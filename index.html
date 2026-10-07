@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Test 9 · English File Beginner</title>
+<!-- DATA NOTE: Answer keys were reconstructed from standard grammar/vocabulary patterns of English File Beginner; verify against the official key if available. -->
+<!-- DATA NOTE: Bold stress markings in the PDF were not machine-readable; stressed syllable positions were restored from standard dictionary pronunciations. -->
+<!-- DATA NOTE: Audio files (A/B variants) are not referenced; no listening section in Quick Tests. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-800-normal.min.css">
+<style>
+  :root{
+    --primary:#4f46e5; --primary-dark:#4338ca; --primary-soft:#eef2ff;
+    --ok:#16a34a; --ok-soft:#dcfce7;
+    --bad:#dc2626; --bad-soft:#fee2e2;
+    --pend:#cbd5e1; --pend-txt:#64748b;
+    --teach:#f59e0b;
+    --ink:#1e293b; --muted:#64748b; --line:#e2e8f0;
+    --card:#ffffff; --radius:18px;
+    --shadow:0 4px 18px rgba(30,41,59,.08);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    background:linear-gradient(180deg,#eef2ff 0%,#f8fafc 40%,#faf5ff 100%);
+    min-height:100vh; color:var(--ink); font-size:16px; line-height:1.5;
+    padding-top:172px;
+  }
+  /* ---------- Sticky top bar ---------- */
+  #topbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(255,255,255,.92); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line); box-shadow:0 2px 12px rgba(30,41,59,.06);
+    padding:8px 14px 10px;
+  }
+  .tb-row1{
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+    max-width:960px; margin:0 auto 8px;
+  }
+  .tb-title{font-weight:800; font-size:15px; letter-spacing:-.2px; white-space:nowrap;}
+  .tb-title small{display:block; font-weight:600; font-size:11px; color:var(--muted); letter-spacing:0;}
+  .fulltest{
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+    background:linear-gradient(135deg,#f59e0b,#f97316); color:#fff;
+    font-size:12px; font-weight:800; padding:6px 14px; border-radius:999px;
+    box-shadow:0 2px 8px rgba(249,115,22,.35); transition:all .2s; white-space:nowrap;
+  }
+  .fulltest:hover{transform:translateY(-1px); box-shadow:0 4px 12px rgba(249,115,22,.45);}
+  .tb-spacer{flex:1;}
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; font-weight:700; padding:4px 10px; border-radius:999px;
+    background:#f1f5f9; color:var(--ink); white-space:nowrap;
+  }
+  .chip.score{background:#ecfdf5; color:#047857;}
+  .chip.save{background:#f8fafc; color:var(--muted); border:1px solid var(--line); transition:all .3s;}
+  .chip.save.saving{color:#b45309; background:#fffbeb;}
+  .chip.save .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;transition:background .3s;}
+  .chip.save.saving .dot{background:#f59e0b; animation:pulse 1s infinite;}
+  @keyframes pulse{50%{opacity:.35;}}
+  #resetBtn{
+    border:none; background:#fef2f2; color:#b91c1c; font-family:inherit;
+    font-size:12px; font-weight:700; padding:6px 12px; border-radius:999px;
+    cursor:pointer; transition:all .2s; min-height:32px;
+  }
+  #resetBtn:hover{background:#fee2e2; transform:translateY(-1px);}
+  /* tabs */
+  .tb-tabs{
+    max-width:960px; margin:0 auto 8px; display:flex; gap:6px; flex-wrap:wrap;
+  }
+  .tab{
+    font-family:inherit; font-size:13px; font-weight:700; cursor:pointer;
+    border:2px solid var(--line); background:#fff; color:var(--muted);
+    padding:7px 16px; border-radius:999px; transition:all .22s; min-height:36px;
+  }
+  .tab:hover{border-color:var(--primary); color:var(--primary-dark);}
+  .tab.active{
+    background:var(--primary); border-color:var(--primary); color:#fff;
+    box-shadow:0 3px 10px rgba(79,70,229,.35);
+  }
+  .tab .tdot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--pend); margin-right:6px; vertical-align:1px; transition:background .3s;}
+  .tab .tdot.done{background:#22c55e;}
+  .tab .tdot.part{background:#f59e0b;}
+  .tab.active .tdot{background:rgba(255,255,255,.85);}
+  .tb-track{max-width:960px; margin:0 auto 6px; height:8px; background:#e2e8f0; border-radius:999px; overflow:hidden;}
+  #fillBar{height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg,#6366f1,#a855f7); transition:width .45s ease;}
+  .tb-dots{max-width:960px; margin:0 auto; display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start;}
+  .dotgroup{display:flex; align-items:center; gap:4px; flex-wrap:wrap;}
+  .dotgroup .glabel{font-size:10px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-right:2px;}
+  .dot{
+    width:11px; height:11px; border-radius:50%; background:var(--pend);
+    cursor:pointer; border:none; padding:0; transition:transform .15s, background .3s;
+  }
+  .dot:hover{transform:scale(1.35);}
+  .dot.correct{background:var(--ok);}
+  .dot.wrong{background:var(--bad);}
+  .dot.teacher{background:var(--teach);}
+  /* ---------- Screens ---------- */
+  main{max-width:820px; margin:0 auto; padding:16px 14px 80px;}
+  .screen{display:none; animation:screenIn .35s ease;}
+  .screen.active{display:block;}
+  @keyframes screenIn{from{opacity:0; transform:translateY(10px);}to{opacity:1; transform:none;}}
+  .hero{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:#fff; border-radius:var(--radius); padding:22px 22px; box-shadow:var(--shadow);
+    margin-bottom:18px;
+  }
+  .hero h1{font-size:23px; font-weight:800; letter-spacing:-.5px;}
+  .hero p{opacity:.85; font-size:13.5px; margin-top:4px;}
+  .hero .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;}
+  .hero .chips span{
+    background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28);
+    font-size:12px; font-weight:700; padding:5px 12px; border-radius:999px;
+  }
+  .sechead{
+    background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:16px 18px; margin-bottom:14px; display:flex; align-items:center; gap:12px;
+    border-left:6px solid var(--primary);
+  }
+  .sechead h2{font-size:19px; font-weight:800; letter-spacing:-.3px;}
+  .sechead .instr{font-size:13.5px; color:var(--muted); margin-top:2px;}
+  .helpbtn{
+    flex-shrink:0; width:30px; height:30px; border-radius:50%; border:none;
+    background:var(--primary); color:#fff; font-weight:800; font-size:15px;
+    cursor:pointer; font-family:inherit; transition:transform .2s, background .2s;
+    box-shadow:0 2px 6px rgba(79,70,229,.4);
+  }
+  .helpbtn:hover{background:var(--primary-dark); transform:scale(1.1);}
+  .partlabel{
+    font-size:13px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;
+    letter-spacing:.8px; margin:18px 4px 10px;
+  }
+  /* ---------- Question cards ---------- */
+  .qcard{
+    background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:16px 18px; margin-bottom:12px; transition:box-shadow .3s, transform .3s;
+    border:2px solid transparent;
+  }
+  .qcard.answered-ok{border-color:#bbf7d0;}
+  .qcard.answered-bad{border-color:#fecaca;}
+  .qhead{display:flex; gap:10px; align-items:flex-start; margin-bottom:12px;}
+  .qnum{
+    flex-shrink:0; min-width:30px; height:30px; border-radius:9px;
+    background:var(--primary-soft); color:var(--primary-dark);
+    font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center;
+  }
+  .qtext{font-size:16.5px; font-weight:600; padding-top:3px;}
+  .qtext .line{display:block;}
+  .qtext .speaker{color:var(--primary); font-weight:800;}
+  .gap{display:inline-block; min-width:70px; border-bottom:2.5px solid #a5b4fc; margin:0 2px;}
+  .keyword{
+    display:inline-block; background:var(--primary-soft); color:var(--primary-dark);
+    padding:2px 14px; border-radius:10px; font-weight:800; font-size:18px;
+  }
+  .opts{display:flex; flex-direction:column; gap:8px;}
+  .opt{
+    display:flex; align-items:center; gap:12px; width:100%; text-align:left;
+    font-family:inherit; font-size:15.5px; font-weight:600; color:var(--ink);
+    background:#f8fafc; border:2px solid var(--line); border-radius:13px;
+    padding:12px 14px; min-height:50px; cursor:pointer;
+    transition:all .22s ease;
+  }
+  .opt .letter{
+    flex-shrink:0; width:28px; height:28px; border-radius:50%;
+    background:#fff; border:2px solid var(--line); color:var(--muted);
+    font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center;
+    transition:all .22s;
+  }
+  .opt:not(:disabled):hover{border-color:var(--primary); background:var(--primary-soft); transform:translateY(-1px);}
+  .opt:not(:disabled):hover .letter{border-color:var(--primary); color:var(--primary);}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#14532d;}
+  .opt.correct .letter{background:var(--ok); border-color:var(--ok); color:#fff;}
+  .opt.wrong{background:var(--bad-soft); border-color:var(--bad); color:#7f1d1d;}
+  .opt.wrong .letter{background:var(--bad); border-color:var(--bad); color:#fff;}
+  .opt.dim{opacity:.5;}
+  .feedback{
+    margin-top:10px; font-size:13.5px; font-weight:700; display:none;
+    padding:8px 12px; border-radius:10px; animation:fadeIn .35s ease;
+  }
+  .feedback.show{display:block;}
+  .feedback.ok{background:var(--ok-soft); color:#15803d;}
+  .feedback.bad{background:var(--bad-soft); color:#b91c1c;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(-4px);}to{opacity:1; transform:none;}}
+  /* ---------- Screen navigation buttons ---------- */
+  .screennav{
+    display:flex; gap:10px; justify-content:space-between; flex-wrap:wrap;
+    margin-top:22px;
+  }
+  .navbtn{
+    font-family:inherit; font-size:15px; font-weight:800; cursor:pointer;
+    padding:14px 22px; border-radius:14px; min-height:52px; transition:all .2s;
+    border:none; flex:1; min-width:150px;
+  }
+  .navbtn.primary{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed); color:#fff;
+    box-shadow:0 4px 14px rgba(79,70,229,.35);
+  }
+  .navbtn.primary:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(79,70,229,.45);}
+  .navbtn.ghost{background:#fff; color:var(--ink); border:2px solid var(--line); box-shadow:var(--shadow);}
+  .navbtn.ghost:hover{border-color:var(--primary); color:var(--primary-dark); transform:translateY(-2px);}
+  .navbtn.full{
+    background:linear-gradient(135deg,#f59e0b,#f97316); color:#fff; text-decoration:none;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    box-shadow:0 4px 14px rgba(249,115,22,.35);
+  }
+  .navbtn.full:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(249,115,22,.45);}
+  /* ---------- Results ---------- */
+  #resultsCard{
+    background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:26px 22px; text-align:center;
+  }
+  #resultsCard h2{font-size:22px; font-weight:800; margin-bottom:6px;}
+  .bigscore{
+    font-size:52px; font-weight:800; letter-spacing:-2px; margin:10px 0 2px;
+    background:linear-gradient(135deg,#4f46e5,#a855f7);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .pct{font-size:15px; color:var(--muted); font-weight:600;}
+  .grade{
+    display:inline-block; margin-top:12px; padding:8px 20px; border-radius:999px;
+    font-weight:800; font-size:14px; background:var(--primary-soft); color:var(--primary-dark);
+  }
+  .secbreak{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;}
+  .secbreak div{
+    background:#f8fafc; border:1px solid var(--line); border-radius:12px;
+    padding:10px 16px; font-size:13px; font-weight:700; min-width:110px;
+  }
+  .secbreak div b{display:block; font-size:19px; color:var(--primary-dark);}
+  .mistakes{
+    text-align:left; margin-top:20px; background:#fffbeb; border:1px solid #fde68a;
+    border-radius:14px; padding:16px; display:none;
+  }
+  .mistakes h3{font-size:15px; margin-bottom:8px;}
+  .mistakes li{font-size:13.5px; margin:6px 0 6px 18px;}
+  .mistakes .ya{color:var(--bad); font-weight:700;}
+  .mistakes .ca{color:var(--ok); font-weight:700;}
+  .resbtns{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:20px;}
+  .bigbtn{
+    font-family:inherit; font-size:15px; font-weight:800; border:none; cursor:pointer;
+    padding:14px 24px; border-radius:13px; min-height:50px; transition:all .2s;
+  }
+  .bigbtn.primary{background:var(--primary); color:#fff; box-shadow:0 4px 12px rgba(79,70,229,.35);}
+  .bigbtn.primary:hover{background:var(--primary-dark); transform:translateY(-2px);}
+  .bigbtn.ghost{background:#f1f5f9; color:var(--ink);}
+  .bigbtn.ghost:hover{background:#e2e8f0; transform:translateY(-2px);}
+  .bigbtn.full{
+    background:linear-gradient(135deg,#f59e0b,#f97316); color:#fff; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 12px rgba(249,115,22,.35);
+  }
+  .bigbtn.full:hover{transform:translateY(-2px);}
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:#1e293b; color:#fff; padding:12px 22px; border-radius:12px;
+    font-size:14px; font-weight:700; opacity:0; pointer-events:none;
+    transition:all .35s ease; z-index:300; box-shadow:0 8px 24px rgba(0,0,0,.3);
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  /* ---------- Help modal ---------- */
+  #overlay{
+    position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:200;
+    display:none; align-items:center; justify-content:center; padding:20px;
+    backdrop-filter:blur(3px);
+  }
+  #overlay.open{display:flex; animation:fadeIn .25s ease;}
+  .modal{
+    background:#fff; border-radius:20px; max-width:420px; width:100%;
+    padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.3);
+  }
+  .modal .mlabel{font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:var(--primary); margin-bottom:6px;}
+  .modal h3{font-size:18px; margin-bottom:12px;}
+  .modal .ru{
+    font-size:15.5px; background:var(--primary-soft); border-radius:12px;
+    padding:14px; color:#312e81; line-height:1.55;
+  }
+  .modal .closebtn{
+    margin-top:16px; width:100%; font-family:inherit; font-weight:800; font-size:15px;
+    background:var(--primary); color:#fff; border:none; border-radius:12px;
+    padding:12px; cursor:pointer; min-height:48px; transition:background .2s;
+  }
+  .modal .closebtn:hover{background:var(--primary-dark);}
+  footer{text-align:center; font-size:12px; color:var(--muted); padding:20px 0 30px;}
+  @media (max-width:600px){
+    body{padding-top:200px; font-size:15px;}
+    .hero h1{font-size:20px;}
+    .tb-title small{display:none;}
+    .chip.save .txt{display:none;}
+    .qtext{font-size:15.5px;}
+    .tab{padding:7px 12px; font-size:12px;}
+    .navbtn{min-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header id="topbar">
+  <div class="tb-row1">
+    <div class="tb-title">Quick Test 9<small>English File Beginner</small></div>
+    <a class="fulltest" href="efb_test9.html" title="Open the full test">📋 Full Test →</a>
+    <div class="tb-spacer"></div>
+    <span class="chip score" id="scoreChip">Score 0/50</span>
+    <span class="chip" id="progChip">0/50</span>
+    <span class="chip save" id="saveChip"><span class="dot"></span><span class="txt" id="saveTxt">Saved</span></span>
+    <button id="resetBtn" title="Start again">↺ Reset</button>
+  </div>
+  <div class="tb-tabs" id="tabRow">
+    <button class="tab active" data-go="grammar"><span class="tdot" id="td-grammar"></span>Grammar</button>
+    <button class="tab" data-go="vocabulary"><span class="tdot" id="td-vocabulary"></span>Vocabulary</button>
+    <button class="tab" data-go="pronunciation"><span class="tdot" id="td-pronunciation"></span>Pronunciation</button>
+    <button class="tab" data-go="results"><span class="tdot" id="td-results"></span>Results</button>
+  </div>
+  <div class="tb-track"><div id="fillBar"></div></div>
+  <div class="tb-dots" id="dotRow"></div>
+</header>
+
+<main>
+  <!-- ============ SCREEN: GRAMMAR ============ -->
+  <div class="screen active" id="screen-grammar">
+    <div class="hero">
+      <h1>Quick Test 9</h1>
+      <p>English File · Fifth Edition · Beginner — tap an answer to check it instantly.</p>
+      <div class="chips"><span>Grammar · 20</span><span>Vocabulary · 20</span><span>Pronunciation · 10</span><span>Total · 50</span></div>
+    </div>
+    <div id="sec-grammar"></div>
+    <div class="screennav">
+      <button class="navbtn primary" data-go="vocabulary">Next: Vocabulary →</button>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN: VOCABULARY ============ -->
+  <div class="screen" id="screen-vocabulary">
+    <div id="sec-vocabulary"></div>
+    <div class="screennav">
+      <button class="navbtn ghost" data-go="grammar">← Grammar</button>
+      <button class="navbtn primary" data-go="pronunciation">Next: Pronunciation →</button>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN: PRONUNCIATION ============ -->
+  <div class="screen" id="screen-pronunciation">
+    <div id="sec-pronunciation"></div>
+    <div class="screennav">
+      <button class="navbtn ghost" data-go="vocabulary">← Vocabulary</button>
+      <button class="navbtn primary" data-go="results">See Results →</button>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN: RESULTS ============ -->
+  <div class="screen" id="screen-results">
+    <div id="resultsCard">
+      <h2>Results</h2>
+      <div class="bigscore" id="bigScore">0/50</div>
+      <div class="pct" id="pctLine">0% · answer all 50 questions to finish</div>
+      <div class="grade" id="gradeLine">Test in progress…</div>
+      <div class="secbreak" id="secBreak"></div>
+      <div class="mistakes" id="mistakeBox"><h3>📝 Mistakes to review</h3><ul id="mistakeList"></ul></div>
+      <div class="resbtns">
+        <button class="bigbtn primary" id="copyPromptBtn">🤖 Copy AI mistake-explanation prompt</button>
+        <a class="bigbtn full" href="efb_test9.html">📋 Full Test →</a>
+        <button class="bigbtn ghost" id="retakeBtn">↺ Retake test</button>
+      </div>
+    </div>
+    <div class="screennav">
+      <button class="navbtn ghost" data-go="pronunciation">← Back to Pronunciation</button>
+    </div>
+  </div>
+
+  <footer>Quick Test 9 · English File fifth edition Beginner Photocopiable © Oxford University Press 2025</footer>
+</main>
+
+<div id="overlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="mlabel">Инструкция · Russian translation</div>
+    <h3 id="modalTitle"></h3>
+    <div class="ru" id="modalRu"></div>
+    <button class="closebtn" id="modalClose">OK, got it</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= DATA ================= */
+var SECTIONS = [
+  {
+    id:"grammar", name:"Grammar",
+    instr:"Tick A, B, or C to complete the sentences.",
+    ru:"Выберите вариант A, B или C, чтобы дополнить предложения.",
+    items:[
+      {id:"g1", num:1, q:"Vanya ________ a shower in the morning.", opts:["always has","having always","is always having"], ans:0},
+      {id:"g2", num:2, q:"What ________?", opts:["are you watching","are you watch","you watching"], ans:0},
+      {id:"g3", num:3, lines:["A: Would you like to go out tonight?","B: Yes, ________."], opts:["I love","I love to","I’d love to"], ans:2},
+      {id:"g4", num:4, q:"It ________ at the moment.", opts:["rains","raining","isn’t raining"], ans:2},
+      {id:"g5", num:5, q:"Where is your brother ________ now?", opts:["live","living","lives"], ans:1},
+      {id:"g6", num:6, lines:["A: Are you watching TV?","B: No, I’m not. I ________."], opts:["is working","work","am working"], ans:2},
+      {id:"g7", num:7, q:"Maya ________ music in her bedroom.", opts:["listens","listening to","is listening to"], ans:2},
+      {id:"g8", num:8, lines:["A: Are you ________ jeans?","B: Yes, I am."], opts:["wear","wears","wearing"], ans:2},
+      {id:"g9", num:9, q:"________ for us?", opts:["Is Antonio wait","Is Antonio waiting","Is waiting Antonio"], ans:1},
+      {id:"g10", num:10, q:"________ anything important now?", opts:["Do you do","Is you doing","Are you doing"], ans:2},
+      {id:"g11", num:11, q:"________ in the evenings?", opts:["Do you study","Do you studying","Does you study"], ans:0},
+      {id:"g12", num:12, q:"Do you ________ Turkish?", opts:["to speak","speaking","speak"], ans:2},
+      {id:"g13", num:13, q:"Oh, no. It’s ________. We can’t drive to the airport.", opts:["snow","snows","snowing"], ans:2},
+      {id:"g14", num:14, q:"Carlos doesn’t usually ________ coffee.", opts:["drink","to drink","drinking"], ans:0},
+      {id:"g15", num:15, q:"________ to go to the cinema with me?", opts:["Are you like","Do you like","Would you like"], ans:2},
+      {id:"g16", num:16, q:"I never ________ to bed late.", opts:["go","going","to go"], ans:0},
+      {id:"g17", num:17, lines:["A: Where are you?","B: I ________ the house now."], opts:["leave","’m leaving","leaving"], ans:1},
+      {id:"g18", num:18, q:"________ going to the concert with you?", opts:["Are they","They are","Do they"], ans:0},
+      {id:"g19", num:19, q:"We’re ________ dinner at the moment.", opts:["have","to have","having"], ans:2},
+      {id:"g20", num:20, lines:["A: What are you doing?","B: I ________ my suitcase."], opts:["’m pack","’m packing","packing"], ans:1}
+    ]
+  },
+  {
+    id:"vocabulary", name:"Vocabulary",
+    parts:[
+      {
+        label:"a · Choose the correct word",
+        instr:"Tick the correct word A, B, or C to complete the sentences.",
+        ru:"Выберите правильное слово A, B или C, чтобы дополнить предложения.",
+        items:[
+          {id:"va1", num:1, q:"Let’s ________ at the station.", opts:["do","have","meet"], ans:2},
+          {id:"va2", num:2, q:"Can I ________ a car, please?", opts:["arrive","rent","wait"], ans:1},
+          {id:"va3", num:3, q:"She ________ her tickets online.", opts:["booked","carried","waited"], ans:0},
+          {id:"va4", num:4, q:"I always wear ________ when it’s cold.", opts:["a T-shirt","sunglasses","a coat"], ans:2},
+          {id:"va5", num:5, q:"We’re ________ for our flight at the airport.", opts:["staying","travelling","waiting"], ans:2},
+          {id:"va6", num:6, lines:["A: ________ to eat outside?","B: Yes, please!"], opts:["Can you like","Do you like","Would you like"], ans:2},
+          {id:"va7", num:7, q:"Amber is wearing a blue ________.", opts:["jacket","jeans","shoes"], ans:0},
+          {id:"va8", num:8, lines:["A: I’d like to ________ you something.","B: Sure."], opts:["ask","say","speak"], ans:0},
+          {id:"va9", num:9, q:"I want to buy some new ________.", opts:["dress","jeans","coat"], ans:1},
+          {id:"va10", num:10, q:"Are you ________ in a hotel?", opts:["arriving","leaving","staying"], ans:2}
+        ]
+      },
+      {
+        label:"b · Tick the word or phrase that goes with the bold word",
+        instr:"Tick the word or phrase that goes with the bold word: A, B, or C.",
+        ru:"Выберите слово или фразу, которая сочетается с выделенным словом: A, B или C.",
+        keyword:true,
+        items:[
+          {id:"vb1", num:11, kw:"rent", opts:["an airport","a train","a car"], ans:2},
+          {id:"vb2", num:12, kw:"wear", opts:["sunglasses","a suitcase","a flight"], ans:0},
+          {id:"vb3", num:13, kw:"hotel", opts:["finish in","arrive at","rent"], ans:1},
+          {id:"vb4", num:14, kw:"airport", opts:["bus stop","a flight","house"], ans:1},
+          {id:"vb5", num:15, kw:"book", opts:["a suitcase","tickets","home"], ans:1},
+          {id:"vb6", num:16, kw:"buy", opts:["presents","home","friends"], ans:0},
+          {id:"vb7", num:17, kw:"suit", opts:["car","jeans","tie"], ans:2},
+          {id:"vb8", num:18, kw:"waiter", opts:["hospital","restaurant","office"], ans:1},
+          {id:"vb9", num:19, kw:"pack", opts:["a taxi","a suitcase","skirt"], ans:1},
+          {id:"vb10", num:20, kw:"hat", opts:["shirt","tickets","hotel"], ans:0}
+        ]
+      }
+    ]
+  },
+  {
+    id:"pronunciation", name:"Pronunciation",
+    parts:[
+      {
+        label:"a · Which word has a different sound?",
+        instr:"Which word has a different sound? Tick A, B, or C.",
+        ru:"В каком слове звук отличается от остальных? Выберите A, B или C.",
+        words:true,
+        items:[
+          {id:"pa1", num:1, opts:["work","old","shirt"], ans:1},
+          {id:"pa2", num:2, opts:["jeans","clean","sweater"], ans:2},
+          {id:"pa3", num:3, opts:["serve","egg","skirt"], ans:1},
+          {id:"pa4", num:4, opts:["brown","coat","trousers"], ans:1},
+          {id:"pa5", num:5, opts:["shoes","phone","coat"], ans:0}
+        ]
+      },
+      {
+        label:"b · Which is the stressed syllable?",
+        instr:"Which is the stressed syllable? Tick A, B, or C.",
+        ru:"Какой слог является ударным? Выберите A, B или C.",
+        stress:true,
+        items:[
+          {id:"pb1", num:6, word:"tomorrow", opts:["<b>TO</b>·morr·ow","to·<b>MORR</b>·ow","to·morr·<b>OW</b>"], ans:1},
+          {id:"pb2", num:7, word:"investigate", opts:["<b>IN</b>·ves·ti·gate","in·<b>VES</b>·ti·gate","in·ves·ti·<b>GATE</b>"], ans:1},
+          {id:"pb3", num:8, word:"experience", opts:["<b>EX</b>·pe·ri·ence","ex·<b>PE</b>·ri·ence","ex·pe·ri·<b>ENCE</b>"], ans:1},
+          {id:"pb4", num:9, word:"different", opts:["<b>DIF</b>·fer·ent","dif·<b>FER</b>·ent","dif·fer·<b>ENT</b>"], ans:0},
+          {id:"pb5", num:10, word:"assistant", opts:["<b>AS</b>·sis·tant","as·<b>SIS</b>·tant","as·sis·<b>TANT</b>"], ans:1}
+        ]
+      }
+    ]
+  }
+];
+
+var LETTERS=["A","B","C"];
+var STORAGE_KEY="qt9_beg_answers_v1";
+var TOTAL=0; var ALL=[]; var BYID={};
+SECTIONS.forEach(function(s){
+  var pool = s.items ? s.items : s.parts.reduce(function(a,p){return a.concat(p.items);},[]);
+  pool.forEach(function(it){ it.section=s.id; it.sectionName=s.name; ALL.push(it); BYID[it.id]=it; });
+  TOTAL += pool.length;
+});
+
+/* ================= STATE ================= */
+var answers={};
+try{ var raw=localStorage.getItem(STORAGE_KEY); if(raw) answers=JSON.parse(raw)||{}; }catch(e){ answers={}; }
+
+/* ================= BUILD UI ================= */
+function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function fillGap(t){ return esc(t).replace(/_{2,}/g,'<span class="gap"></span>'); }
+function questionHTML(it){
+  if(it.lines){
+    return it.lines.map(function(l){
+      var m=l.match(/^([AB]):\s*(.*)$/);
+      if(m) return '<span class="line"><span class="speaker">'+m[1]+':</span> '+fillGap(m[2])+'</span>';
+      return '<span class="line">'+fillGap(l)+'</span>';
+    }).join("");
+  }
+  if(it.kw) return '<span class="keyword">'+esc(it.kw)+'</span>';
+  if(it.q) return fillGap(it.q);
+  if(it.word) return 'Which syllable is stressed in <span class="keyword">'+esc(it.word)+'</span>?';
+  return "Choose the word with a different sound.";
+}
+function buildCard(it){
+  var card=document.createElement("div");
+  card.className="qcard"; card.id="q-"+it.id;
+  var inner='<div class="qhead"><span class="qnum">'+it.num+'</span><div class="qtext">'+questionHTML(it)+'</div></div>';
+  inner+='<div class="opts">';
+  it.opts.forEach(function(o,i){
+    inner+='<button type="button" class="opt" data-qid="'+it.id+'" data-idx="'+i+'"><span class="letter">'+LETTERS[i]+'</span><span class="opttxt">'+o+'</span></button>';
+  });
+  inner+='</div><div class="feedback" id="fb-'+it.id+'"></div>';
+  card.innerHTML=inner;
+  return card;
+}
+function sectionHead(name,instr,ru){
+  var d=document.createElement("div");
+  d.className="sechead";
+  d.innerHTML='<div style="flex:1"><h2>'+name+'</h2><div class="instr">'+instr+'</div></div>';
+  var b=document.createElement("button");
+  b.className="helpbtn"; b.type="button"; b.textContent="?"; b.setAttribute("aria-label","Help");
+  b.addEventListener("click",function(){ openHelp(name,ru); });
+  d.appendChild(b);
+  return d;
+}
+
+SECTIONS.forEach(function(s){
+  var host=document.getElementById("sec-"+s.id);
+  if(s.items){
+    host.appendChild(sectionHead(s.name,s.instr,s.ru));
+    s.items.forEach(function(it){ host.appendChild(buildCard(it)); });
+  }else{
+    var head=sectionHead(s.name,"Two parts · "+s.parts.reduce(function(a,p){return a+p.items.length;},0)+" questions",
+      s.parts.map(function(p){return p.ru;}).join(" | "));
+    host.appendChild(head);
+    s.parts.forEach(function(p){
+      var pl=document.createElement("div"); pl.className="partlabel"; pl.textContent=p.label;
+      host.appendChild(pl);
+      p.items.forEach(function(it){ host.appendChild(buildCard(it)); });
+    });
+  }
+});
+
+/* progress dots */
+var dotRow=document.getElementById("dotRow");
+SECTIONS.forEach(function(s){
+  var grp=document.createElement("div"); grp.className="dotgroup";
+  grp.innerHTML='<span class="glabel">'+s.name.slice(0,4)+'</span>';
+  var pool = s.items ? s.items : s.parts.reduce(function(a,p){return a.concat(p.items);},[]);
+  pool.forEach(function(it){
+    var d=document.createElement("button");
+    d.type="button"; d.className="dot"; d.id="dot-"+it.id;
+    d.title=s.name+" · Q"+it.num;
+    d.addEventListener("click",function(){
+      showScreen(s.id);
+      setTimeout(function(){
+        document.getElementById("q-"+it.id).scrollIntoView({behavior:"smooth",block:"center"});
+      },80);
+    });
+    grp.appendChild(d);
+  });
+  dotRow.appendChild(grp);
+});
+
+/* ================= SCREENS ================= */
+var SCREENS=["grammar","vocabulary","pronunciation","results"];
+var SCREEN_TITLES={grammar:"Grammar",vocabulary:"Vocabulary",pronunciation:"Pronunciation",results:"Results"};
+function showScreen(name){
+  if(SCREENS.indexOf(name)===-1) name="grammar";
+  SCREENS.forEach(function(n){
+    document.getElementById("screen-"+n).classList.toggle("active",n===name);
+  });
+  document.querySelectorAll(".tab").forEach(function(t){
+    t.classList.toggle("active",t.getAttribute("data-go")===name);
+  });
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.addEventListener("click",function(e){
+  var go=e.target.closest("[data-go]");
+  if(go){ showScreen(go.getAttribute("data-go")); }
+});
+
+/* ================= HELP MODAL ================= */
+var overlay=document.getElementById("overlay");
+function openHelp(title,ru){
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalRu").textContent=ru;
+  overlay.classList.add("open");
+}
+function closeHelp(){ overlay.classList.remove("open"); }
+document.getElementById("modalClose").addEventListener("click",closeHelp);
+overlay.addEventListener("click",function(e){ if(e.target===overlay) closeHelp(); });
+document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeHelp(); });
+
+/* ================= SAVE / STATUS ================= */
+var saveChip=document.getElementById("saveChip"), saveTxt=document.getElementById("saveTxt"), saveTimer=null;
+function persist(){
+  saveChip.classList.add("saving"); saveTxt.textContent="Saving…";
+  try{ localStorage.setItem(STORAGE_KEY,JSON.stringify(answers)); }catch(e){}
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(function(){ saveChip.classList.remove("saving"); saveTxt.textContent="Saved ✓"; },400);
+}
+
+/* ================= ANSWERING ================= */
+function plainOpt(it,i){
+  var tmp=document.createElement("div"); tmp.innerHTML=it.opts[i];
+  return tmp.textContent;
+}
+function applyAnswer(it,idx,silent){
+  var card=document.getElementById("q-"+it.id);
+  var btns=card.querySelectorAll(".opt");
+  btns.forEach(function(b,i){
+    b.disabled=true;
+    if(i===it.ans) b.classList.add("correct");
+    else if(i===idx) b.classList.add("wrong");
+    else b.classList.add("dim");
+  });
+  card.classList.add(idx===it.ans?"answered-ok":"answered-bad");
+  var fb=document.getElementById("fb-"+it.id);
+  if(idx===it.ans){ fb.className="feedback show ok"; fb.textContent="✓ Correct!"; }
+  else{ fb.className="feedback show bad"; fb.textContent="✗ Incorrect. Correct answer: "+LETTERS[it.ans]+" — "+plainOpt(it,it.ans); }
+  var dot=document.getElementById("dot-"+it.id);
+  dot.classList.add(idx===it.ans?"correct":"wrong");
+  if(!silent) persist();
+  refreshStats();
+}
+function refreshStats(){
+  var done=0, correct=0;
+  var secStat={};
+  SECTIONS.forEach(function(s){ secStat[s.id]={done:0,correct:0,total:0}; });
+  ALL.forEach(function(it){
+    secStat[it.section].total++;
+    if(answers[it.id]!==undefined){
+      done++; secStat[it.section].done++;
+      if(answers[it.id]===it.ans){ correct++; secStat[it.section].correct++; }
+    }
+  });
+  document.getElementById("scoreChip").textContent="Score "+correct+"/"+TOTAL;
+  document.getElementById("progChip").textContent=done+"/"+TOTAL;
+  document.getElementById("fillBar").style.width=(done/TOTAL*100)+"%";
+  document.getElementById("bigScore").textContent=correct+"/"+TOTAL;
+  /* tab completion dots */
+  SECTIONS.forEach(function(s){
+    var st=secStat[s.id], el=document.getElementById("td-"+s.id);
+    el.className="tdot"+(st.done===st.total&&st.total>0?" done":(st.done>0?" part":""));
+  });
+  var resultsDone = done===TOTAL;
+  document.getElementById("td-results").className="tdot"+(resultsDone?" done":(done>0?" part":""));
+
+  var pct=Math.round(correct/TOTAL*100);
+  var pctEl=document.getElementById("pctLine"), gradeEl=document.getElementById("gradeLine");
+  if(done<TOTAL){
+    pctEl.textContent=pct+"% · "+(TOTAL-done)+" questions left";
+    gradeEl.textContent="Test in progress…";
+    gradeEl.style.background="var(--primary-soft)"; gradeEl.style.color="var(--primary-dark)";
+  }else{
+    pctEl.textContent=pct+"% · Test complete!";
+    var msg,bg,fg;
+    if(pct>=90){ msg="🌟 Excellent!"; bg="#dcfce7"; fg="#15803d"; }
+    else if(pct>=70){ msg="👏 Well done!"; bg="#dbeafe"; fg="#1d4ed8"; }
+    else if(pct>=50){ msg="🙂 Good effort — keep practising!"; bg="#fef9c3"; fg="#a16207"; }
+    else{ msg="📚 Keep studying — you can do it!"; bg="#fee2e2"; fg="#b91c1c"; }
+    gradeEl.textContent=msg; gradeEl.style.background=bg; gradeEl.style.color=fg;
+  }
+  var brk=document.getElementById("secBreak"); brk.innerHTML="";
+  SECTIONS.forEach(function(s){
+    var st=secStat[s.id];
+    var d=document.createElement("div");
+    d.innerHTML="<b>"+st.correct+"/"+st.total+"</b>"+s.name;
+    brk.appendChild(d);
+  });
+  var wrong=ALL.filter(function(it){ return answers[it.id]!==undefined && answers[it.id]!==it.ans; });
+  var box=document.getElementById("mistakeBox"), list=document.getElementById("mistakeList");
+  if(wrong.length){
+    box.style.display="block"; list.innerHTML="";
+    wrong.forEach(function(it){
+      var li=document.createElement("li");
+      var qt = it.q? it.q.replace(/_{2,}/g,"____") : it.lines? it.lines.join(" ") : it.kw? it.kw+" + …" : it.word||"";
+      li.innerHTML="<b>Q"+it.num+" ("+it.sectionName+"): </b>"+esc(qt)+
+        ' — your answer: <span class="ya">'+esc(plainOpt(it,answers[it.id]))+
+        '</span> → correct: <span class="ca">'+esc(plainOpt(it,it.ans))+"</span>";
+      list.appendChild(li);
+    });
+  }else box.style.display="none";
+}
+
+document.addEventListener("click",function(e){
+  var btn=e.target.closest(".opt");
+  if(!btn) return;
+  var qid=btn.getAttribute("data-qid"), idx=parseInt(btn.getAttribute("data-idx"),10);
+  if(answers[qid]!==undefined) return;
+  answers[qid]=idx;
+  applyAnswer(BYID[qid],idx,false);
+});
+
+/* restore */
+ALL.forEach(function(it){ if(answers[it.id]!==undefined) applyAnswer(it,answers[it.id],true); });
+refreshStats();
+
+/* ================= RESET / RETAKE ================= */
+function doReset(){
+  if(!confirm("Start the test again? All your answers will be cleared.")) return;
+  try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+  location.reload();
+}
+document.getElementById("resetBtn").addEventListener("click",doReset);
+document.getElementById("retakeBtn").addEventListener("click",doReset);
+
+/* ================= AI PROMPT COPY ================= */
+var toast=document.getElementById("toast"), toastT=null;
+function showToast(msg){
+  toast.textContent=msg; toast.classList.add("show");
+  clearTimeout(toastT); toastT=setTimeout(function(){ toast.classList.remove("show"); },2400);
+}
+function copyText(txt){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ showToast("✓ Prompt copied to clipboard"); },function(){ fallbackCopy(txt); });
+  }else fallbackCopy(txt);
+}
+function fallbackCopy(txt){
+  var ta=document.createElement("textarea");
+  ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); showToast("✓ Prompt copied to clipboard"); }
+  catch(e){ showToast("Copy failed — select the text manually."); }
+  document.body.removeChild(ta);
+}
+document.getElementById("copyPromptBtn").addEventListener("click",function(){
+  var wrong=ALL.filter(function(it){ return answers[it.id]!==undefined && answers[it.id]!==it.ans; });
+  var done=ALL.filter(function(it){ return answers[it.id]!==undefined; }).length;
+  var correct=ALL.filter(function(it){ return answers[it.id]===it.ans; }).length;
+  var prompt="Ты — опытный и доброжелательный преподаватель английского языка. "+
+    "Ученик выполнил тест Quick Test 9 (учебник English File, fifth edition, уровень Beginner). "+
+    "Результат: "+correct+" правильных ответов из "+done+" данных ("+TOTAL+" вопросов в тесте). "+
+    "Ниже приведены ошибки ученика. Объясни каждую ошибку на простом и понятном русском языке: "+
+    "почему выбранный учеником вариант неверен, какой вариант правильный и какое грамматическое или лексическое правило здесь применяется. "+
+    "Пиши кратко, дружелюбно и по делу.\n\nОшибки:\n";
+  if(wrong.length===0 && done===TOTAL){
+    prompt+="Ошибок нет — ученик ответил правильно на все вопросы. Похвали ученика и предложи небольшое усложнённое задание для закрепления.\n";
+  }else if(wrong.length===0){
+    prompt+="Пока ошибок нет, но тест выполнен не до конца.\n";
+  }else{
+    wrong.forEach(function(it,i){
+      var qt = it.q? it.q.replace(/_{2,}/g,"_____") : it.lines? it.lines.join(" ") : it.kw? it.kw+" + …" : it.word||"";
+      prompt+=(i+1)+". ["+it.sectionName+", №"+it.num+"] «"+qt+"» — ученик выбрал: «"+plainOpt(it,answers[it.id])+"», правильный ответ: «"+plainOpt(it,it.ans)+"».\n";
+    });
+  }
+  copyText(prompt);
+});
+})();
+</script>
+</body>
+</html>
