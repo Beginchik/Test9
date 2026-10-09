@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EFB File Test 9A – Interactive Test</title>
+<!--
+  ============================================================
+  EXTERNAL FILES USED BY THIS TEST
+  ============================================================
+  Listening audio 1: audio/efb_test9_listening1.mp3
+  Listening audio 2: audio/efb_test9_listening2.mp3
+  Script file:       Provided by user (ef5e_beg_filetest_audioscript.pdf – FILE 9 transcripts embedded in this page)
+  Test source:       ef5e_beg_file_test_09a.pdf (English File 5th ed. Beginner – File Test 9A)
+  Section order:     follows the original PDF order:
+                     Grammar → Vocabulary → Pronunciation → Practical English →
+                     Reading → Writing → Listening → Speaking
+  ============================================================
+-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.8/latin-400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.8/latin-500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.8/latin-600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.8/latin-700.css">
+<style>
+:root{
+  --bg:#f2f5f9; --card:#ffffff; --ink:#1e293b; --muted:#64748b;
+  --primary:#2563eb; --primary-d:#1d4ed8; --green:#16a34a; --green-bg:#dcfce7;
+  --red:#dc2626; --red-bg:#fee2e2; --amber:#d97706; --amber-bg:#fef3c7;
+  --purple:#7c3aed; --purple-bg:#ede9fe; --grey:#cbd5e1; --line:#e2e8f0;
+  --radius:14px; --shadow:0 2px 10px rgba(15,23,42,.07);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5}
+button{font-family:inherit}
+/* ---------- Top bar ---------- */
+#topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(15,23,42,.06)}
+#topbarInner{max-width:960px;margin:0 auto;padding:8px 14px}
+#topRow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#testTitle{font-weight:700;font-size:1.02rem;flex:1;min-width:150px}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px;background:#f1f5f9;color:var(--muted);white-space:nowrap}
+#savedFlag{background:var(--green-bg);color:var(--green);opacity:0;transition:opacity .4s}
+#savedFlag.show{opacity:1}
+#storageWarn{display:none;background:var(--amber-bg);color:var(--amber);font-size:.8rem;padding:6px 14px;text-align:center}
+/* ---------- Progress ---------- */
+#progressWrap{display:flex;gap:6px;overflow-x:auto;padding:8px 0 6px;scrollbar-width:thin}
+.psec{display:flex;align-items:center;gap:5px;padding:4px 8px;background:#f8fafc;border:1px solid var(--line);border-radius:10px;flex-shrink:0}
+.psec-name{font-size:.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-right:2px}
+.pdot{width:13px;height:13px;border-radius:50%;background:var(--grey);border:none;padding:0;cursor:pointer;transition:transform .12s;flex-shrink:0}
+.pdot:hover{transform:scale(1.25)}
+.pdot:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.pdot.correct{background:var(--green)}
+.pdot.incorrect{background:var(--red)}
+.pdot.teacher{background:var(--purple)}
+.pdot.current{box-shadow:0 0 0 3px rgba(37,99,235,.45)}
+.pdot.unanswered.current{background:var(--primary)}
+#progressLegend{display:flex;gap:12px;flex-wrap:wrap;font-size:.7rem;color:var(--muted);padding-bottom:6px}
+.lg{display:inline-flex;align-items:center;gap:4px}
+.lg i{width:9px;height:9px;border-radius:50%;display:inline-block}
+/* ---------- Layout ---------- */
+#main{max-width:960px;margin:0 auto;padding:16px 14px 120px}
+#secNav{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px}
+.chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:600;font-size:.85rem;padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.15s}
+.chip:hover{border-color:var(--primary);color:var(--primary)}
+.chip.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.chip .cnt{font-weight:500;opacity:.75;font-size:.75rem;margin-left:4px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:16px}
+.sec-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.sec-head h2{margin:0;font-size:1.35rem}
+.sec-sub{color:var(--muted);font-size:.85rem;margin:2px 0 14px}
+.ex-title{font-weight:700;margin:18px 0 4px;font-size:1rem}
+.ex-instr{color:var(--muted);font-size:.88rem;margin-bottom:10px}
+.example{background:#f8fafc;border-left:3px solid var(--grey);padding:8px 12px;border-radius:0 8px 8px 0;font-size:.88rem;color:var(--muted);margin-bottom:12px}
+.wordbox{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+.wordbox span{background:#eff6ff;border:1px solid #bfdbfe;color:var(--primary-d);font-weight:600;font-size:.85rem;padding:4px 12px;border-radius:8px}
+.passage{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.92rem;margin-bottom:14px;max-height:340px;overflow-y:auto}
+.passage h4{margin:0 0 8px}
+/* ---------- Questions ---------- */
+.question{padding:14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:#fff;transition:border-color .2s, background .2s}
+.question.state-correct{border-color:#86efac;background:#f6fef9}
+.question.state-incorrect{border-color:#fca5a5;background:#fff8f8}
+.question.state-teacher{border-color:#c4b5fd;background:#fbfaff}
+.q-label{font-weight:700;color:var(--primary);font-size:.85rem;margin-right:6px}
+.q-prompt{margin:0 0 8px}
+.q-prompt input[type=text]{font:inherit;font-size:.95rem;padding:6px 10px;border:1.5px solid var(--grey);border-radius:8px;width:170px;max-width:60vw;margin:0 4px;background:#fff}
+.q-prompt input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.q-prompt input.ok{border-color:var(--green);background:var(--green-bg)}
+.q-prompt input.bad{border-color:var(--red);background:var(--red-bg)}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opts.row{flex-direction:row;flex-wrap:wrap;gap:8px}
+.opt{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line);border-radius:10px;padding:9px 13px;cursor:pointer;font-size:.93rem;transition:.13s;background:#fff;min-height:44px}
+.opt:hover{border-color:#93c5fd;background:#f8fbff}
+.opt input{accent-color:var(--primary);width:17px;height:17px;flex-shrink:0}
+.opt.sel-ok{border-color:var(--green);background:var(--green-bg)}
+.opt.sel-bad{border-color:var(--red);background:var(--red-bg)}
+.opt.sel-teacher{border-color:var(--purple);background:var(--purple-bg)}
+.feedback{margin-top:8px;font-size:.85rem;font-weight:600;display:none;align-items:center;gap:6px}
+.feedback.show{display:flex}
+.feedback.ok{color:var(--green)}
+.feedback.bad{color:var(--red)}
+.feedback.pending{color:var(--purple)}
+/* ---------- Audio player ---------- */
+.audio-card{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:12px 14px;margin:10px 0 16px}
+.play-btn{background:var(--primary);color:#fff;border:none;border-radius:999px;font-weight:700;font-size:.92rem;padding:11px 22px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:46px;transition:.15s}
+.play-btn:hover:not(:disabled){background:var(--primary-d)}
+.play-btn:disabled{background:var(--grey);cursor:not-allowed}
+.listens-left{font-size:.85rem;font-weight:600;color:var(--primary-d)}
+.listens-left.none{color:var(--red)}
+.audio-err{display:none;font-size:.82rem;color:var(--amber);font-weight:600}
+/* ---------- Buttons ---------- */
+.btn{border:none;border-radius:10px;font-weight:600;font-size:.92rem;padding:11px 20px;cursor:pointer;min-height:44px;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+.btn:focus-visible{outline:3px solid rgba(37,99,235,.4);outline-offset:2px}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-d)}
+.btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.btn-danger{background:#fff;border:1.5px solid #fca5a5;color:var(--red)}
+.btn-danger:hover{background:var(--red-bg)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:#15803d}
+.btn-purple{background:var(--purple);color:#fff}
+.btn-purple:hover{background:#6d28d9}
+.btn-sm{padding:8px 14px;font-size:.83rem;min-height:38px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+#navRow{display:flex;justify-content:space-between;gap:10px;margin-top:8px;flex-wrap:wrap}
+#submitRow{text-align:center;margin:26px 0}
+.big-submit{font-size:1.05rem;padding:15px 44px;border-radius:14px}
+/* ---------- Textareas ---------- */
+textarea{width:100%;min-height:130px;font:inherit;font-size:.95rem;padding:12px;border:1.5px solid var(--grey);border-radius:10px;resize:vertical;background:#fff}
+textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.charcount{font-size:.75rem;color:var(--muted);text-align:right;margin-top:4px}
+/* ---------- Recorder ---------- */
+.recorder{border:1.5px dashed #c4b5fd;border-radius:12px;padding:14px;margin-top:10px;background:#fdfcff}
+.rec-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rec-btn{background:var(--red);color:#fff;border:none;border-radius:999px;width:54px;height:54px;font-size:1.2rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:.15s;flex-shrink:0}
+.rec-btn:hover{background:#b91c1c}
+.rec-btn.recording{animation:pulse 1.1s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(220,38,38,.5)}70%{box-shadow:0 0 0 14px rgba(220,38,38,0)}100%{box-shadow:0 0 0 0 rgba(220,38,38,0)}}
+.rec-timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:1rem;min-width:58px}
+.rec-status{font-size:.83rem;font-weight:600;color:var(--muted)}
+.rec-status.saved{color:var(--purple)}
+.rec-note{font-size:.78rem;color:var(--muted);margin-top:8px}
+.rec-msg{font-size:.83rem;margin-top:8px;padding:8px 10px;border-radius:8px;display:none}
+.rec-msg.show{display:block}
+.rec-msg.err{background:var(--red-bg);color:var(--red)}
+.rec-msg.info{background:#eff6ff;color:var(--primary-d)}
+.rec-player{margin-top:10px;display:none}
+.rec-player.show{display:block}
+.rec-player audio{width:100%;max-width:420px}
+/* ---------- Modal ---------- */
+#overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:24px 14px;overflow-y:auto}
+#overlay.show{display:flex}
+#modal{background:#fff;border-radius:16px;max-width:640px;width:100%;padding:24px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:pop .18s ease}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
+#modal h3{margin:0 0 10px;font-size:1.15rem}
+#modalBody{font-size:.93rem}
+#modalActions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px}
+.script-block{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:.87rem;max-height:50vh;overflow-y:auto}
+.script-block h4{margin:0 0 8px;color:var(--primary-d)}
+.script-block p{margin:4px 0}
+.script-block .sp{font-weight:700}
+.warn-item{background:var(--amber-bg);border-radius:8px;padding:8px 12px;margin:6px 0;font-size:.88rem}
+/* ---------- Results ---------- */
+.res-hero{text-align:center;padding:28px 20px}
+.res-score{font-size:2.6rem;font-weight:800;color:var(--primary);margin:4px 0}
+.res-grade{display:inline-block;font-size:1.05rem;font-weight:700;padding:8px 22px;border-radius:999px;background:var(--green-bg);color:var(--green);margin:6px 0}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:18px;text-align:left}
+.res-cell{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:12px}
+.res-cell .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700}
+.res-cell .v{font-size:1.05rem;font-weight:700;margin-top:2px}
+.sec-status{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.92rem;gap:8px;flex-wrap:wrap}
+.sec-status:last-child{border-bottom:none}
+.pill{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px}
+.pill.g{background:var(--green-bg);color:var(--green)}
+.pill.r{background:var(--red-bg);color:var(--red)}
+.pill.p{background:var(--purple-bg);color:var(--purple)}
+.pill.a{background:var(--amber-bg);color:var(--amber)}
+.share-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.review-item{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.review-item.wrong{border-color:#fca5a5;background:#fffafa}
+.review-item.teacher{border-color:#c4b5fd;background:#fcfbff}
+.ans-line{margin:5px 0;font-size:.92rem}
+.ans-correct{color:var(--green);font-weight:700}
+.ans-wrong{color:var(--red);font-weight:600;text-decoration:line-through}
+.expl{background:#f0f9ff;border-left:3px solid #38bdf8;padding:8px 12px;border-radius:0 8px 8px 0;font-size:.86rem;color:#0c4a6e;margin-top:8px}
+.rv-sec-title{font-size:1.1rem;font-weight:800;margin:20px 0 10px;color:var(--primary-d)}
+.hidden{display:none!important}
+@media(max-width:640px){
+  body{font-size:15px}
+  .card{padding:15px}
+  #testTitle{font-size:.9rem}
+  .res-score{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<div id="storageWarn">⚠ Progress cannot be saved in this browser (storage is blocked). Your work will be lost if you close this page.</div>
+
+<header id="topbar" role="banner">
+  <div id="topbarInner">
+    <div id="topRow">
+      <div id="testTitle">📘 EFB File Test 9A <span style="font-weight:500;color:var(--muted);font-size:.8rem">· English File Beginner</span></div>
+      <span class="badge" id="timerBadge">⏱ <span id="timerTxt">0:00</span></span>
+      <span class="badge" id="savedFlag" aria-live="polite">✓ Saved</span>
+    </div>
+    <div id="progressWrap" aria-label="Test progress"></div>
+    <div id="progressLegend">
+      <span class="lg"><i style="background:var(--grey)"></i> Unanswered</span>
+      <span class="lg"><i style="background:var(--primary)"></i> Current</span>
+      <span class="lg"><i style="background:var(--green)"></i> Correct</span>
+      <span class="lg"><i style="background:var(--red)"></i> Incorrect</span>
+      <span class="lg"><i style="background:var(--purple)"></i> Awaiting teacher</span>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <nav id="secNav" aria-label="Section navigation"></nav>
+  <div id="sectionsHost"></div>
+  <div id="navRow">
+    <button class="btn btn-ghost" id="prevBtn">← Previous</button>
+    <button class="btn btn-primary" id="nextBtn">Next →</button>
+  </div>
+  <div id="submitRow">
+    <button class="btn btn-green big-submit" id="submitBtn">✅ Submit Test</button>
+  </div>
+  <div id="resultsHost" class="hidden"></div>
+</main>
+
+<div id="overlay" role="dialog" aria-modal="true">
+  <div id="modal">
+    <h3 id="modalTitle"></h3>
+    <div id="modalBody"></div>
+    <div id="modalActions"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* =========================================================
+   CONFIG – fixed listening audio paths (per rules)
+   ========================================================= */
+const LISTENING_AUDIO_PATHS = {
+  listening1: "audio/efb_test9_listening1.mp3",
+  listening2: "audio/efb_test9_listening2.mp3"
+};
+const LS_KEY = "efb_ft9a_state_v2";
+const MAX_LISTENS = 2;
+const MAX_RECORD_MS = 120000; // 2 minutes
+
+/* =========================================================
+   TEST DATA – section order matches the original PDF:
+   Grammar, Vocabulary, Pronunciation, Practical English,
+   Reading, Writing, Listening, Speaking
+   ========================================================= */
+const PE_PHRASES = ["How about a coffee","Yes, I'd love to","No, thanks","See you there","Sorry, I can't","Would you like"];
+
+const DATA = [
+{id:"grammar", name:"Grammar", teacher:false, exercises:[
+  {title:"Exercise 1", instr:"Complete the sentences. Use the present continuous form of the verb in brackets.",
+   example:"Example: I can't talk right now. I <b>am driving</b> (drive) to the office.",
+   questions:[
+    {qid:"g1q1",num:1,type:"text",prompt:"Sam ___ (cook) a meal for his friends.",ansList:["is cooking","s cooking"],exp:"Present continuous with \u201cSam\u201d (he): is + cooking."},
+    {qid:"g1q2",num:2,type:"text",prompt:"Megan ___ (shop). She wants to buy some books.",ansList:["is shopping","s shopping"],exp:"Present continuous with \u201cMegan\u201d (she): is + shopping (double p)."},
+    {qid:"g1q3",num:3,type:"text",prompt:"We ___ (stay) in a hotel in the city centre.",ansList:["are staying","re staying"],exp:"Present continuous with \u201cwe\u201d: are + staying."},
+    {qid:"g1q4",num:4,type:"text",prompt:"The children ___ (do) their homework in their bedrooms.",ansList:["are doing","re doing"],exp:"Present continuous with \u201cthe children\u201d (they): are + doing."},
+    {qid:"g1q5",num:5,type:"text",prompt:"I ___ (have) a great time in London.",ansList:["am having","m having"],exp:"Present continuous with \u201cI\u201d: am + having."}
+   ]},
+  {title:"Exercise 2", instr:"Tick (✓) the correct verb form.",
+   example:"Example: We always <b>eat</b> / are eating lunch at home on Sundays.",
+   questions:[
+    {qid:"g2q1",num:1,type:"mc",prompt:"Max sometimes ___ in a coffee shop at the weekend.",options:["works","is working"],ans:0,exp:"\u201cSometimes\u201d = a routine/habit → present simple: works."},
+    {qid:"g2q2",num:2,type:"mc",prompt:"Julio ___ an email to his mother at the moment.",options:["writes","is writing"],ans:1,exp:"\u201cAt the moment\u201d = happening now → present continuous: is writing."},
+    {qid:"g2q3",num:3,type:"mc",prompt:"That's my girlfriend over there. She ___ a red dress.",options:["wears","is wearing"],ans:1,exp:"She is wearing it now (over there) → present continuous: is wearing."},
+    {qid:"g2q4",num:4,type:"mc",prompt:"We usually ___ the TV after work.",options:["watch","are watching"],ans:0,exp:"\u201cUsually\u201d = a routine → present simple: watch."},
+    {qid:"g2q5",num:5,type:"mc",prompt:"Tina ___ for her train right now.",options:["waits","is waiting"],ans:1,exp:"\u201cRight now\u201d = happening now → present continuous: is waiting."}
+   ]}
+]},
+{id:"vocabulary", name:"Vocabulary", teacher:false, exercises:[
+  {title:"Exercise 3", instr:"Complete the email with a verb from the box. Use the correct verb form.",
+   box:["buy","arrive","have","rent","pack","stay"],
+   context:"Hi Penny, We're on holiday now in Venice and we're having a great time! Here are some photos of everything so far… See you on Monday! Carla",
+   questions:[
+    {qid:"v3q1",num:1,type:"text",prompt:"The first photo is me. I'm at home and I'm ___ my suitcase.",ansList:["packing"],exp:"You put clothes in a suitcase → pack. After \u201cI'm\u201d use -ing: packing."},
+    {qid:"v3q2",num:2,type:"text",prompt:"In the third photo, we're ___ in Venice.",ansList:["arriving"],exp:"You get to a place → arrive. After \u201cwe're\u201d use -ing: arriving."},
+    {qid:"v3q3",num:3,type:"text",prompt:"In the fourth photo, you can see us at the hotel. We're ___ in a fantastic hotel in the centre of the town.",ansList:["staying"],exp:"You live in a hotel for a short time → stay. After \u201cwe're\u201d: staying."},
+    {qid:"v3q4",num:4,type:"text",prompt:"In the next photo, we're ___ presents for our friends.",ansList:["buying"],exp:"You get presents in shops → buy. After \u201cwe're\u201d: buying."},
+    {qid:"v3q5",num:5,type:"text",prompt:"And in the last photo, it's me in our little car – we're ___ a car here for a week!",ansList:["renting"],exp:"You pay to use a car → rent. After \u201cwe're\u201d: renting."}
+   ]},
+  {title:"Exercise 4", instr:"Complete the sentences. Write one word in each gap. The words are all related to clothes.",
+   example:"Example: I like wearing <b>jeans</b> and a T-shirt at the weekends.",
+   questions:[
+    {qid:"v4q1",num:1,type:"text",prompt:"I'm wearing a sw___ because the classroom is cold.",ansList:["sweater"],exp:"A warm piece of clothing for your body → sweater."},
+    {qid:"v4q2",num:2,type:"text",prompt:"Do you know where my c___ is? It's raining outside.",ansList:["coat"],exp:"You wear it over your clothes when it rains or is cold → coat."},
+    {qid:"v4q3",num:3,type:"text",prompt:"I work in a bank. I wear a s___, a shirt, and tie every day.",ansList:["suit"],exp:"Formal clothes for work: jacket and trousers together → suit."},
+    {qid:"v4q4",num:4,type:"text",prompt:"It's very nice outside today. A lot of people are wearing T-shirts, sh___ and sunglasses.",ansList:["shorts"],exp:"Short trousers for hot weather → shorts."},
+    {qid:"v4q5",num:5,type:"text",prompt:"You look nice. Is that a new dr___?",ansList:["dress"],exp:"A one-piece item of clothing for women → dress."}
+   ]}
+]},
+{id:"pronunciation", name:"Pronunciation", teacher:false, exercises:[
+  {title:"Exercise 5", instr:"Which is the stressed syllable? Tick (✓) 1, 2, or 3.",
+   example:"Example: in|ter|net → <b>1</b>",
+   questions:[
+    {qid:"p5q1",num:1,type:"stress",prompt:"tra|ve|lling",ans:0,exp:"TRAV-ell-ing: two-syllable verbs like \u201ctravel\u201d are usually stressed on the first syllable."},
+    {qid:"p5q2",num:2,type:"stress",prompt:"in|ter|view",ans:0,exp:"IN-ter-view: the stress is on the first syllable."},
+    {qid:"p5q3",num:3,type:"stress",prompt:"com|pan|ies",ans:0,exp:"COM-pan-ies: the stress is on the first syllable."},
+    {qid:"p5q4",num:4,type:"stress",prompt:"im|por|tant",ans:1,exp:"im-POR-tant: the stress is on the second syllable."},
+    {qid:"p5q5",num:5,type:"stress",prompt:"trou|sers",ans:0,exp:"TROU-sers: the stress is on the first syllable."}
+   ]}
+]},
+{id:"practical", name:"Practical English", teacher:false, exercises:[
+  {title:"Exercise 6", instr:"Complete the dialogues with a phrase from the box.",
+   box:PE_PHRASES,
+   example:"Example: A – <b>Would you like</b> a burger? &nbsp; B – Yes, please. I'm hungry!",
+   questions:[
+    {qid:"e6q1",num:1,type:"mc",prompt:"A: Would you like to go to the football match tomorrow evening?<br>B: ___ .<br>A: Great! I'll get tickets!",options:PE_PHRASES,ans:1,exp:"B accepts the invitation happily → \u201cYes, I'd love to.\u201d"},
+    {qid:"e6q2",num:2,type:"mc",prompt:"A: Let's meet at 8 o'clock at the restaurant.<br>B: OK. ___ at 8 o'clock then.",options:PE_PHRASES,ans:3,exp:"When you agree to meet, you say → \u201cSee you there.\u201d"},
+    {qid:"e6q3",num:3,type:"mc",prompt:"A: Would you like a sandwich?<br>B: ___ . I'm not hungry.",options:PE_PHRASES,ans:2,exp:"B declines politely → \u201cNo, thanks.\u201d"},
+    {qid:"e6q4",num:4,type:"mc",prompt:"A: ___ ?<br>B: Oh, yes please.<br>A: Do you take milk and sugar?",options:PE_PHRASES,ans:0,exp:"Milk and sugar go with coffee → \u201cHow about a coffee?\u201d"},
+    {qid:"e6q5",num:5,type:"mc",prompt:"A: Would you like to go to the cinema on Friday evening?<br>B: ___ . I'm busy this Friday.",options:PE_PHRASES,ans:4,exp:"B can't come because they are busy → \u201cSorry, I can't.\u201d"}
+   ]}
+]},
+{id:"reading", name:"Reading", teacher:false, exercises:[
+  {title:"Exercise 1", instr:"Read the blog. Tick (✓) True or False.",
+   passage:{title:"My work experience",
+   text:"<p>Matteo Lopez studies at university and works in a café. Every day, he writes a blog about his work experience and his life.</p><p><b>Monday, 12th October</b><br>Every morning, I get up at 7 o'clock and go to the café. It's not a big café. This morning only four people are working here.</p><p>Usually, I work in the kitchen doing small jobs, but today I'm working in the café cleaning tables and serving customers. Right now, I'm having lunch. I always have lunch at the café because the food is delicious and it isn't expensive. Usually, after lunch, I go to university to study, but today I'm staying at work in the afternoon because we are really busy. At university, I'm studying business and I want to work in an office.</p><p>I like my job because every day I meet new people and that is interesting. Also, I don't need to wear special clothes. Today, I'm wearing a T-shirt and jeans. The only thing I don't like is getting up early in the morning.</p><p>I have a girlfriend. Her name is Monica and she works in a school. She wants to be a teacher. Today, she isn't working as she's travelling to the USA to visit her sister. At the moment, she's at the airport waiting for her flight.</p><p>I usually see her every day and sometimes we go to the cinema together. We love watching action films.</p>"},
+   example:"Example: Matteo works in a café. → <b>True</b>",
+   questions:[
+    {qid:"r1q1",num:1,type:"tf",prompt:"Matteo always gets up at 7 a.m.",ans:true,exp:"\u201cEvery morning, I get up at 7 o'clock.\u201d"},
+    {qid:"r1q2",num:2,type:"tf",prompt:"The café is big.",ans:false,exp:"\u201cIt's not a big café.\u201d"},
+    {qid:"r1q3",num:3,type:"tf",prompt:"Matteo usually works in the kitchen.",ans:true,exp:"\u201cUsually, I work in the kitchen doing small jobs.\u201d"},
+    {qid:"r1q4",num:4,type:"tf",prompt:"At the moment, he is having lunch.",ans:true,exp:"\u201cRight now, I'm having lunch.\u201d"},
+    {qid:"r1q5",num:5,type:"tf",prompt:"The food in the café is expensive.",ans:false,exp:"\u201cThe food is delicious and it isn't expensive.\u201d"},
+    {qid:"r1q6",num:6,type:"tf",prompt:"Matteo never goes to university in the afternoon.",ans:false,exp:"Usually, after lunch, he goes to university. Today is the exception because the café is busy."},
+    {qid:"r1q7",num:7,type:"tf",prompt:"He is wearing a suit today.",ans:false,exp:"\u201cToday, I'm wearing a T-shirt and jeans.\u201d"},
+    {qid:"r1q8",num:8,type:"tf",prompt:"His girlfriend isn't working today.",ans:true,exp:"\u201cToday, she isn't working as she's travelling to the USA.\u201d"},
+    {qid:"r1q9",num:9,type:"tf",prompt:"At the moment, she is waiting for a taxi.",ans:false,exp:"She is at the airport waiting for her flight, not for a taxi."},
+    {qid:"r1q10",num:10,type:"tf",prompt:"Matteo loves watching action films with his girlfriend.",ans:true,exp:"\u201cWe love watching action films.\u201d"}
+   ]},
+  {title:"Exercise 2", instr:"Read the blog again. Complete the sentences with one word.",
+   example:"Example: Matteo writes a blog about his <b>work experience</b>.",
+   questions:[
+    {qid:"r2q1",num:1,type:"text",prompt:"There are f___ people working at the café.",ansList:["four","4"],exp:"\u201cThis morning only four people are working here.\u201d"},
+    {qid:"r2q2",num:2,type:"text",prompt:"The food at the café is d___ .",ansList:["delicious"],exp:"\u201cThe food is delicious and it isn't expensive.\u201d"},
+    {qid:"r2q3",num:3,type:"text",prompt:"Matteo isn't studying today because the café is really b___ .",ansList:["busy"],exp:"\u201cToday I'm staying at work in the afternoon because we are really busy.\u201d"},
+    {qid:"r2q4",num:4,type:"text",prompt:"His girlfriend wants to be a t___ in a school.",ansList:["teacher"],exp:"\u201cShe wants to be a teacher.\u201d"},
+    {qid:"r2q5",num:5,type:"text",prompt:"At the moment, Monica is at the a___ .",ansList:["airport"],exp:"\u201cAt the moment, she's at the airport waiting for her flight.\u201d"}
+   ]}
+]},
+{id:"writing", name:"Writing", teacher:true, exercises:[
+  {title:"Writing task", instr:"You have a new online friend, Juan. Write an email to Juan about the topics in the box. Then ask Juan five questions about these topics.",
+   box:["Address and phone","Family","Work / School","Free-time activities","Usual schedule"],
+   questions:[
+    {qid:"w1",num:1,type:"essay",prompt:"Write your email to Juan below. Begin like this:<br><br><i>Hi Juan,<br>Nice to meet you. Let me tell you about myself: …<br><br>Now let me ask you some questions! …</i>",minWords:40}
+   ]}
+]},
+{id:"listening", name:"Listening", teacher:false, exercises:[
+  {title:"Exercise 1", instr:"Listen to Eva and Gabor's telephone conversation. Tick True or False.", audio:"listening1",
+   questions:[
+    {qid:"l1q1",num:1,type:"tf",prompt:"Gabor is at work.",ans:false,exp:"Gabor isn't at work – he is in the car, driving home."},
+    {qid:"l1q2",num:2,type:"tf",prompt:"Eva is doing the housework.",ans:true,exp:"Eva says: \u201cI'm doing the housework.\u201d"},
+    {qid:"l1q3",num:3,type:"tf",prompt:"Adam is helping his mother.",ans:false,exp:"Adam isn't helping – he is in his bedroom."},
+    {qid:"l1q4",num:4,type:"tf",prompt:"Eva thinks Adam is probably talking to his friends.",ans:true,exp:"Eva thinks Adam is talking online to his friends, and Gabor agrees (\u201cYou're probably right\u201d)."},
+    {qid:"l1q5",num:5,type:"tf",prompt:"Gabor isn't stopping at the supermarket.",ans:false,exp:"Gabor IS stopping at the supermarket to buy something special for dinner."}
+   ]},
+  {title:"Exercise 2", instr:"Listen to five conversations and answer the questions.", audio:"listening2",
+   questions:[
+    {qid:"l2q1",num:1,type:"mc",prompt:"Why is the woman getting a taxi to the airport?",options:["because it's expensive","because it's fast","because it's slow"],ans:1,exp:"The woman is in a hurry and doesn't want to be late, so she chooses the fast option – a taxi."},
+    {qid:"l2q2",num:2,type:"mc",prompt:"Where are Paul's parents staying?",options:["at Paul's flat","with Paul's friends","at a hotel"],ans:2,exp:"Paul says: \u201cMy parents are staying in a hotel.\u201d"},
+    {qid:"l2q3",num:3,type:"mc",prompt:"What would the woman like for lunch?",options:["a burger","a sandwich","she isn't hungry"],ans:2,exp:"The woman refuses a burger and a sandwich – she isn't very hungry."},
+    {qid:"l2q4",num:4,type:"mc",prompt:"Where is the man?",options:["leaving the train station","arriving at the bus stop","outside the restaurant"],ans:1,exp:"The man (Alec) says: \u201cI'm arriving at the bus stop.\u201d Robyn is leaving the train station."},
+    {qid:"l2q5",num:5,type:"mc",prompt:"The man is wearing ________.",options:["a black hat","a green hat","a green coat"],ans:2,exp:"The man says: \u201cI'm wearing a green coat\u201d and he is NOT wearing a hat."}
+   ]}
+]},
+{id:"speaking", name:"Speaking", teacher:true, exercises:[
+  {title:"Exercise 1", instr:"Answer these questions about yourself. Write notes and/or record your answers.",
+   questions:[
+    {qid:"s1",num:1,type:"speak",prompt:"Answer the questions:<br>1. What do you usually do on Mondays?<br>2. What do you usually do in the evenings?<br>3. What are you doing now?<br>4. What do you usually wear in summer?<br>5. What do you wear to work / school?"}
+   ]},
+  {title:"Exercises 2 & 3", instr:"Your partner has information about a job. Ask questions to complete the form (Job, Hours of work, Money, Phone number). Then answer your partner's questions about this job:",
+   context:"<b>Job information (for Exercise 3):</b><br>Job: Worker in a factory · Hours of work: 8 a.m. – 4 p.m., Monday – Friday · Money: £96 per day · Phone number: 0115 496 0133",
+   questions:[
+    {qid:"s2",num:2,type:"speak",prompt:"Write and/or record the <b>questions</b> you would ask to complete the job form:<br>Job: ___ · Hours of work: ___ · Money: ___ · Phone number: ___"},
+    {qid:"s3",num:3,type:"speak",prompt:"Now answer your partner's questions about the job above (Worker in a factory, 8 a.m. – 4 p.m., £96 per day, 0115 496 0133). Write and/or record your <b>answers</b>."}
+   ]}
+]}
+];
+
+const SCRIPTS = {
+  listening1: {title:"Listening 1 – Eva and Gabor's telephone conversation", lines:[
+    ["Eva","Hi Gabor, where are you? Are you at work?"],
+    ["Gabor","No, I'm in the car."],
+    ["Eva","So you're driving home..."],
+    ["Gabor","Yes, I know I'm late, but the traffic is bad. What are you doing at the moment?"],
+    ["Eva","I'm doing the housework."],
+    ["Gabor","Again? But you do the housework every day."],
+    ["Eva","Yes, I know, but it's important."],
+    ["Gabor","What about Adam, is he helping you?"],
+    ["Eva","No, he isn't. He's in his bedroom."],
+    ["Gabor","What's he doing up there?"],
+    ["Eva","I hope he's doing his homework, but I think he's talking online to his friends."],
+    ["Gabor","You're probably right. Is Silvia at home?"],
+    ["Eva","No. Remember she's staying at Harlie's today."],
+    ["Gabor","Oh yes."],
+    ["Eva","Gabor? Gabor?"],
+    ["Gabor","Sorry, I'm stopping at the supermarket."],
+    ["Eva","Why? What are you buying there?"],
+    ["Gabor","I want to buy something special for dinner."],
+    ["Eva","OK, see you soon."]
+  ]},
+  listening2: {title:"Listening 2 – Five conversations", lines:[
+    ["1 · Man","How are you going to the airport?"],
+    ["1 · Woman","I'm getting a taxi."],
+    ["1 · Man","Really? They're very expensive."],
+    ["1 · Woman","I know, but I'm in a hurry."],
+    ["1 · Man","Why don't you get the bus?"],
+    ["1 · Woman","Oh no, that's very slow. I don't want to be late."],
+    ["2 · Jo","Hi Paul! Where are you?"],
+    ["2 · Paul","Hi, I'm on holiday in Italy."],
+    ["2 · Jo","Wow. Where are you staying?"],
+    ["2 · Paul","I'm staying with friends."],
+    ["2 · Jo","That's good because hotels are very expensive."],
+    ["2 · Paul","I know, my parents are staying in a hotel and it's not cheap."],
+    ["2 · Jo","Where do your friends live?"],
+    ["2 · Paul","They live in a flat in the city centre, so it's perfect."],
+    ["3 · Man","Would you like a burger?"],
+    ["3 · Woman","No, thanks. I don't like fast food."],
+    ["3 · Man","Oh, right. Would you like a sandwich, then?"],
+    ["3 · Woman","Not really. I'm not very hungry."],
+    ["4 · Alec","Hi, Robyn. Where are you?"],
+    ["4 · Robyn","Hi, Alec. I'm leaving the train station now."],
+    ["4 · Alec","OK, I'm arriving at the bus stop, so let's meet outside the restaurant."],
+    ["4 · Robyn","OK, see you there in ten minutes."],
+    ["5 · Woman","Hi... where are you? I can't see you."],
+    ["5 · Man","I'm standing near the entrance to the Tube station."],
+    ["5 · Woman","OK. What are you wearing?"],
+    ["5 · Man","Wearing?"],
+    ["5 · Woman","Yes, what are you wearing?"],
+    ["5 · Man","Oh, I'm wearing a green coat."],
+    ["5 · Woman","Are you wearing a black hat?"],
+    ["5 · Man","No, I'm not wearing a hat."],
+    ["5 · Woman","Oh, I can see you now."]
+  ]}
+};
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let state = {
+  answers:{}, teacher:{}, listens:{listening1:0, listening2:0},
+  elapsed:0, submitted:false, submittedAt:null, sectionIdx:0,
+  recMeta:{}, lastSaved:null
+};
+let storageOK = true;
+let currentQid = null;
+let curSection = 0;
+let timerHandle = null, lastTick = 0, lastSaveAt = 0;
+const allQuestions = [];
+DATA.forEach(sec => sec.exercises.forEach(ex => ex.questions.forEach(q => allQuestions.push(Object.assign({}, q, {secId:sec.id, secName:sec.name, exTitle:ex.title})))));
+const qIndex = {}; allQuestions.forEach(q => { qIndex[q.qid]=q; });
+const teacherSecIds = DATA.filter(s=>s.teacher).map(s=>s.id);
+const autoQuestions = allQuestions.filter(q => teacherSecIds.indexOf(q.secId)===-1);
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw){ const saved = JSON.parse(raw); state = Object.assign(state, saved); }
+  }catch(e){ storageOK=false; }
+  if(!storageOK) document.getElementById("storageWarn").style.display="block";
+}
+let saveTimerFlag=null;
+function saveState(){
+  state.lastSaved = Date.now();
+  lastSaveAt = state.lastSaved;
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+  catch(e){ storageOK=false; document.getElementById("storageWarn").style.display="block"; return; }
+  const flag=document.getElementById("savedFlag");
+  flag.classList.add("show");
+  clearTimeout(saveTimerFlag);
+  saveTimerFlag=setTimeout(()=>flag.classList.remove("show"),1600);
+}
+
+/* ---------- IndexedDB for recordings ---------- */
+let idbFailed=false;
+function openIDB(){
+  return new Promise((resolve,reject)=>{
+    if(idbFailed){reject(new Error("idb unavailable"));return;}
+    try{
+      const req = indexedDB.open("efb_ft9a_db",1);
+      req.onupgradeneeded = ()=>{ const db=req.result; if(!db.objectStoreNames.contains("recordings")) db.createObjectStore("recordings"); };
+      req.onsuccess = ()=>resolve(req.result);
+      req.onerror = ()=>{idbFailed=true;reject(req.error);};
+    }catch(e){idbFailed=true;reject(e);}
+  });
+}
+async function idbPut(key,blob){ const db=await openIDB(); return new Promise((res,rej)=>{ const tx=db.transaction("recordings","readwrite"); tx.objectStore("recordings").put(blob,key); tx.oncomplete=()=>res(); tx.onerror=()=>rej(tx.error); }); }
+async function idbGet(key){ const db=await openIDB(); return new Promise((res,rej)=>{ const tx=db.transaction("recordings","readonly"); const r=tx.objectStore("recordings").get(key); r.onsuccess=()=>res(r.result||null); r.onerror=()=>rej(r.error); }); }
+async function idbDel(key){ try{ const db=await openIDB(); return new Promise((res)=>{ const tx=db.transaction("recordings","readwrite"); tx.objectStore("recordings").delete(key); tx.oncomplete=()=>res(); tx.onerror=()=>res(); }); }catch(e){} }
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+function norm(s){ return String(s).toLowerCase().replace(/['\u2019]/g,"").replace(/\s+/g," ").trim(); }
+function isTextCorrect(q,val){ if(val==null||val==="")return null; const n=norm(val); return q.ansList.some(a=>norm(a)===n); }
+function getAnswered(q){
+  if(teacherSecIds.indexOf(q.secId)>-1){
+    const hasText = String(state.teacher[q.qid]||"").trim().length>0;
+    const hasRec = !!state.recMeta[q.qid];
+    if(q.type==="essay") return hasText;
+    return hasText || hasRec;
+  }
+  const v = state.answers[q.qid];
+  return !(v===undefined || v===null || v==="");
+}
+function getCorrect(q){
+  const v = state.answers[q.qid];
+  if(v===undefined||v===null||v==="")return null;
+  if(q.type==="tf") return (v==="true")===q.ans;
+  if(q.type==="mc"||q.type==="stress") return Number(v)===q.ans;
+  if(q.type==="text") return isTextCorrect(q,v);
+  return null;
+}
+function fmtTime(sec){
+  const m=Math.floor(sec/60), s=Math.floor(sec%60);
+  return m+":"+String(s).padStart(2,"0");
+}
+function fmtTimeLong(sec){
+  const m=Math.floor(sec/60), s=Math.floor(sec%60);
+  if(m===0) return s+" seconds";
+  return m+(m===1?" minute":" minutes")+" "+s+(s===1?" second":" seconds");
+}
+function fmtDate(ts){
+  const d=new Date(ts);
+  return d.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+", "+d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+}
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+const overlay=document.getElementById("overlay");
+const modalTitle=document.getElementById("modalTitle");
+const modalBody=document.getElementById("modalBody");
+const modalActions=document.getElementById("modalActions");
+let lastFocus=null;
+function openModal(title,bodyHTML,actions){
+  lastFocus=document.activeElement;
+  modalTitle.textContent=title;
+  modalBody.innerHTML=bodyHTML;
+  modalActions.innerHTML="";
+  actions.forEach(a=>{
+    const b=document.createElement("button");
+    b.className="btn "+(a.cls||"btn-ghost");
+    b.textContent=a.label;
+    b.onclick=()=>{ if(a.onClick) a.onClick(); if(a.keepOpen!==true) closeModal(); };
+    modalActions.appendChild(b);
+  });
+  overlay.classList.add("show");
+  const first=modalActions.querySelector("button"); if(first) first.focus();
+}
+function closeModal(){ overlay.classList.remove("show"); if(lastFocus && document.contains(lastFocus)) lastFocus.focus(); }
+overlay.addEventListener("click",e=>{ if(e.target===overlay) closeModal(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&overlay.classList.contains("show")) closeModal(); });
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+const sectionsHost=document.getElementById("sectionsHost");
+const secNav=document.getElementById("secNav");
+const progressWrap=document.getElementById("progressWrap");
+const dotMap={};
+
+function buildProgress(){
+  progressWrap.innerHTML="";
+  DATA.forEach(sec=>{
+    const div=document.createElement("div");
+    div.className="psec";
+    const nm=document.createElement("span"); nm.className="psec-name"; nm.textContent=sec.name;
+    div.appendChild(nm);
+    sec.exercises.forEach(ex=>ex.questions.forEach(q=>{
+      const d=document.createElement("button");
+      d.className="pdot unanswered";
+      d.title=sec.name+" · "+ex.title+" · Q"+q.num;
+      d.setAttribute("aria-label","Go to "+sec.name+" "+ex.title+" question "+q.num);
+      d.onclick=()=>{ goToSection(DATA.findIndex(s=>s.id===sec.id)); setTimeout(()=>{ const el=document.getElementById("q-"+q.qid); if(el){el.scrollIntoView({behavior:"smooth",block:"center"});} setCurrentQ(q.qid); },80); };
+      div.appendChild(d);
+      dotMap[q.qid]=d;
+    }));
+    progressWrap.appendChild(div);
+  });
+}
+
+function buildNav(){
+  secNav.innerHTML="";
+  DATA.forEach((sec,i)=>{
+    const b=document.createElement("button");
+    b.className="chip"+(i===curSection?" active":"");
+    b.textContent=sec.name;
+    const cnt=document.createElement("span"); cnt.className="cnt"; cnt.id="chipcnt-"+sec.id;
+    b.appendChild(cnt);
+    b.onclick=()=>goToSection(i);
+    b.setAttribute("aria-label","Go to section "+sec.name);
+    secNav.appendChild(b);
+  });
+}
+
+function inputFor(q){
+  const inp=document.createElement("input");
+  inp.type="text"; inp.id="in-"+q.qid;
+  inp.setAttribute("aria-label","Answer for question "+q.num);
+  inp.autocomplete="off"; inp.spellcheck=false;
+  inp.value = state.answers[q.qid]||"";
+  inp.addEventListener("input",()=>{ state.answers[q.qid]=inp.value; refreshQuestion(q.qid); saveState(); });
+  inp.addEventListener("blur",()=>{ state.answers[q.qid]=inp.value; refreshQuestion(q.qid); saveState(); });
+  return inp;
+}
+
+/* Builds a prompt paragraph; every run of underscores (_) becomes one text input. */
+function buildPromptWithInput(q){
+  const p=document.createElement("p"); p.className="q-prompt";
+  const label=document.createElement("span"); label.className="q-label"; label.textContent=q.num+".";
+  p.appendChild(label);
+  const parts=String(q.prompt).split(/_+/);
+  parts.forEach((part,i)=>{
+    const span=document.createElement("span"); span.innerHTML=part;
+    p.appendChild(span);
+    if(i<parts.length-1) p.appendChild(inputFor(q));
+  });
+  return p;
+}
+
+function buildQuestion(q,sec){
+  const wrap=document.createElement("div");
+  wrap.className="question"; wrap.id="q-"+q.qid; wrap.dataset.qid=q.qid;
+
+  if(q.type==="essay"||q.type==="speak"){
+    const pr=document.createElement("div"); pr.className="q-prompt";
+    pr.innerHTML='<span class="q-label">'+q.num+'.</span> '+q.prompt;
+    wrap.appendChild(pr);
+    const ta=document.createElement("textarea");
+    ta.id="ta-"+q.qid; ta.placeholder="Write your answer here…";
+    ta.value=state.teacher[q.qid]||"";
+    ta.setAttribute("aria-label","Written answer for question "+q.num);
+    let taT=null;
+    ta.addEventListener("input",()=>{ state.teacher[q.qid]=ta.value; clearTimeout(taT); taT=setTimeout(()=>{refreshQuestion(q.qid);saveState();},400); updateCharCount(); });
+    wrap.appendChild(ta);
+    const cc=document.createElement("div"); cc.className="charcount"; cc.id="cc-"+q.qid;
+    wrap.appendChild(cc);
+    function updateCharCount(){ const w=ta.value.trim()?ta.value.trim().split(/\s+/).length:0; cc.textContent=w+" words"; }
+    updateCharCount();
+
+    if(q.type==="speak") wrap.appendChild(buildRecorder(q));
+
+    const st=document.createElement("div"); st.className="feedback pending"; st.id="st-"+q.qid;
+    wrap.appendChild(st);
+    return wrap;
+  }
+
+  if(q.type==="text"){
+    wrap.appendChild(buildPromptWithInput(q));
+  } else {
+    const pLine=document.createElement("p"); pLine.className="q-prompt";
+    pLine.innerHTML='<span class="q-label">'+q.num+'.</span> <span>'+q.prompt+'</span>';
+    wrap.appendChild(pLine);
+    const opts=document.createElement("div");
+    if(q.type==="tf"){
+      opts.className="opts row"; opts.setAttribute("role","radiogroup");
+      ["true","false"].forEach((v,i)=>{
+        const lab=document.createElement("label"); lab.className="opt";
+        lab.innerHTML='<input type="radio" name="opt-'+q.qid+'" value="'+v+'"><span>'+(i===0?"True ✓":"False ✗")+'</span>';
+        const r=lab.querySelector("input");
+        if(String(state.answers[q.qid])===v) r.checked=true;
+        r.addEventListener("change",()=>{ state.answers[q.qid]=v; refreshQuestion(q.qid); saveState(); });
+        opts.appendChild(lab);
+      });
+    } else {
+      opts.className="opts"+(q.type==="stress"?" row":"");
+      opts.setAttribute("role","radiogroup");
+      const list = q.type==="stress" ? ["1","2","3"] : q.options;
+      list.forEach((optTxt,idx)=>{
+        const lab=document.createElement("label"); lab.className="opt";
+        lab.innerHTML='<input type="radio" name="opt-'+q.qid+'" value="'+idx+'"><span>'+(q.type==="stress"?("Syllable "+optTxt):esc(optTxt))+'</span>';
+        const r=lab.querySelector("input");
+        if(state.answers[q.qid]!==undefined && Number(state.answers[q.qid])===idx) r.checked=true;
+        r.addEventListener("change",()=>{ state.answers[q.qid]=idx; refreshQuestion(q.qid); saveState(); });
+        opts.appendChild(lab);
+      });
+    }
+    wrap.appendChild(opts);
+  }
+  const fb=document.createElement("div"); fb.className="feedback"; fb.id="fb-"+q.qid;
+  wrap.appendChild(fb);
+  return wrap;
+}
+
+function buildRecorder(q){
+  const box=document.createElement("div"); box.className="recorder"; box.id="rec-"+q.qid;
+  box.innerHTML=
+    '<div class="rec-row">'+
+      '<button class="rec-btn" id="recbtn-'+q.qid+'" aria-label="Record answer for question '+q.num+'">🎙</button>'+
+      '<span class="rec-timer" id="rectimer-'+q.qid+'">0:00</span>'+
+      '<span class="rec-status" id="recstatus-'+q.qid+'">Not recorded</span>'+
+    '</div>'+
+    '<div class="rec-player" id="recplayer-'+q.qid+'"></div>'+
+    '<div class="rec-row" style="margin-top:10px">'+
+      '<label class="btn btn-ghost btn-sm" style="cursor:pointer">📁 Upload audio instead<input type="file" accept="audio/*" id="recfile-'+q.qid+'" style="display:none"></label>'+
+      '<button class="btn btn-ghost btn-sm hidden" id="recdel-'+q.qid+'">🗑 Delete recording</button>'+
+    '</div>'+
+    '<div class="rec-note">🎙 Microphone access is needed to record your speaking answer so your teacher can grade it. Recordings stay on your device. Maximum length: 2 minutes.</div>'+
+    '<div class="rec-msg" id="recmsg-'+q.qid+'"></div>';
+  return box;
+}
+
+function buildSections(){
+  sectionsHost.innerHTML="";
+  DATA.forEach((sec,si)=>{
+    const host=document.createElement("section");
+    host.className="card sec-card"; host.id="sec-"+sec.id;
+    host.setAttribute("aria-label",sec.name+" section");
+
+    const head=document.createElement("div"); head.className="sec-head";
+    head.innerHTML='<div><h2>'+(si+1)+'. '+sec.name+'</h2><div class="sec-sub">'+(sec.teacher?"🧑‍🏫 This section is graded by your teacher. Your answers are saved automatically.":"✔ This section is marked automatically.")+'</div></div>';
+    const rb=document.createElement("button"); rb.className="btn btn-danger btn-sm"; rb.textContent="↺ Reset";
+    rb.setAttribute("aria-label","Reset "+sec.name+" section or whole test");
+    rb.onclick=()=>openResetModal(sec);
+    head.appendChild(rb);
+    host.appendChild(head);
+
+    sec.exercises.forEach(ex=>{
+      const exDiv=document.createElement("div");
+      exDiv.innerHTML='<div class="ex-title">'+ex.title+'</div><div class="ex-instr">'+ex.instr+'</div>';
+      if(ex.example){ const e=document.createElement("div"); e.className="example"; e.innerHTML="📝 "+ex.example; exDiv.appendChild(e); }
+      if(ex.box){ const wb=document.createElement("div"); wb.className="wordbox"; ex.box.forEach(w=>{const s=document.createElement("span"); s.textContent=w; wb.appendChild(s);}); exDiv.appendChild(wb); }
+      if(ex.context){ const c=document.createElement("div"); c.className="example"; c.innerHTML="✉️ "+ex.context; exDiv.appendChild(c); }
+      if(ex.passage){ const ps=document.createElement("div"); ps.className="passage"; ps.innerHTML="<h4>"+ex.passage.title+"</h4>"+ex.passage.text; exDiv.appendChild(ps); }
+      if(ex.audio){
+        const ac=document.createElement("div"); ac.className="audio-card";
+        ac.innerHTML=
+          '<button class="play-btn" id="playbtn-'+ex.audio+'" aria-label="Play listening audio, exercise '+ex.title+'">▶ Listen</button>'+
+          '<span class="listens-left" id="ll-'+ex.audio+'">Listens left: '+Math.max(0,MAX_LISTENS-(state.listens[ex.audio]||0))+'</span>'+
+          '<span class="audio-err" id="aerr-'+ex.audio+'">⚠ Audio could not be loaded ('+LISTENING_AUDIO_PATHS[ex.audio]+'). Please check the file exists. You can still answer the questions.</span>';
+        exDiv.appendChild(ac);
+      }
+      ex.questions.forEach(q=>{ exDiv.appendChild(buildQuestion(q,sec)); });
+      host.appendChild(exDiv);
+    });
+
+    if(sec.id==="listening"){
+      const scriptRow=document.createElement("div"); scriptRow.style.marginTop="14px";
+      const sb=document.createElement("button"); sb.className="btn btn-purple hidden"; sb.id="viewScriptBtn";
+      sb.textContent="📜 View script"; sb.onclick=openScriptModal;
+      scriptRow.appendChild(sb);
+      host.appendChild(scriptRow);
+    }
+
+    sectionsHost.appendChild(host);
+  });
+
+  // wire audio players for every exercise that has audio (order-independent)
+  DATA.forEach(sec=>sec.exercises.forEach(ex=>{ if(ex.audio) setupPlayer(ex.audio); }));
+  // wire recorders
+  allQuestions.filter(q=>q.type==="speak").forEach(q=>setupRecorder(q));
+}
+
+/* ---------- Listening player (max 2 complete listens) ---------- */
+const players={};
+function setupPlayer(taskId){
+  const audio=new Audio(LISTENING_AUDIO_PATHS[taskId]);
+  audio.preload="metadata";
+  const btn=document.getElementById("playbtn-"+taskId);
+  const ll=document.getElementById("ll-"+taskId);
+  const err=document.getElementById("aerr-"+taskId);
+  if(!btn) return;
+  players[taskId]={audio,btn,ll,err};
+  audio.addEventListener("error",()=>{ err.style.display="inline"; });
+  audio.addEventListener("ended",()=>{
+    if((state.listens[taskId]||0)<MAX_LISTENS){ state.listens[taskId]=(state.listens[taskId]||0)+1; saveState(); }
+    updatePlayerUI(taskId);
+  });
+  audio.addEventListener("play",()=>updatePlayerUI(taskId));
+  audio.addEventListener("pause",()=>updatePlayerUI(taskId));
+  btn.addEventListener("click",()=>{
+    if(audio.paused){
+      const used=state.listens[taskId]||0;
+      if(used>=MAX_LISTENS && audio.currentTime===0) return; // no listens left and nothing to resume
+      audio.play().catch(()=>{ err.style.display="inline"; });
+    } else {
+      audio.pause();
+    }
+  });
+  updatePlayerUI(taskId);
+}
+function updatePlayerUI(taskId){
+  const p=players[taskId]; if(!p)return;
+  const used=state.listens[taskId]||0;
+  const left=Math.max(0,MAX_LISTENS-used);
+  const a=p.audio;
+  if(!a.paused){ p.btn.innerHTML="⏸ Pause"; }
+  else if(a.currentTime>0 && !a.ended){ p.btn.innerHTML="▶ Resume"; }
+  else { p.btn.innerHTML="▶ Listen"; }
+  // disabled only when both listens are used AND there is nothing paused mid-way to resume
+  p.btn.disabled = (left===0 && a.paused && (a.ended || a.currentTime===0));
+  if(left===0){ p.ll.textContent="No listens left"; p.ll.classList.add("none"); }
+  else { p.ll.textContent="Listens left: "+left; p.ll.classList.remove("none"); }
+}
+
+/* ---------- Speaking recorder ---------- */
+const recStates={};
+function setupRecorder(q){
+  const qid=q.qid;
+  recStates[qid]={recorder:null,stream:null,chunks:[],startTs:0,interval:null};
+  const btn=document.getElementById("recbtn-"+qid);
+  const fileIn=document.getElementById("recfile-"+qid);
+  const delBtn=document.getElementById("recdel-"+qid);
+  if(!btn) return;
+  btn.addEventListener("click",()=>toggleRecording(q));
+  fileIn.addEventListener("change",async ()=>{
+    const f=fileIn.files&&fileIn.files[0];
+    if(!f)return;
+    await saveRecordingBlob(q,f,"speaking_"+qid+"_"+f.name);
+    fileIn.value="";
+  });
+  delBtn.addEventListener("click",()=>{
+    openModal("Delete recording?","This will permanently delete your recording for Speaking question "+q.num+". This cannot be undone.",[
+      {label:"Cancel",cls:"btn-ghost"},
+      {label:"Delete",cls:"btn-danger",onClick:async()=>{
+        await idbDel("rec_"+qid);
+        delete state.recMeta[qid];
+        saveState(); renderRecPlayer(q); refreshQuestion(qid);
+      }}
+    ]);
+  });
+  // restore recording after reload
+  (async()=>{
+    try{
+      const blob=await idbGet("rec_"+qid);
+      if(blob){
+        if(!state.recMeta[qid]) state.recMeta[qid]={type:blob.type,size:blob.size,ts:Date.now()};
+        renderRecPlayer(q); refreshQuestion(qid);
+      }
+    }catch(e){}
+  })();
+}
+function showRecMsg(qid,text,type){
+  const m=document.getElementById("recmsg-"+qid);
+  if(!m)return;
+  m.textContent=text; m.className="rec-msg show "+type;
+}
+function toggleRecording(q){
+  const qid=q.qid, rs=recStates[qid];
+  if(rs.recorder && rs.recorder.state==="recording"){ stopRecording(q); return; }
+  if(!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)){
+    showRecMsg(qid,"Recording is not supported in this browser. Please use the 📁 upload button to attach an audio file instead.","err");
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true})
+  .then(stream=>{
+    rs.stream=stream; rs.chunks=[];
+    let rec;
+    try{ rec=new MediaRecorder(stream); }catch(e){
+      showRecMsg(qid,"Recording is not supported in this browser. Please use the 📁 upload button instead.","err");
+      stream.getTracks().forEach(t=>t.stop());
+      return;
+    }
+    rs.recorder=rec;
+    rec.ondataavailable=e=>{ if(e.data && e.data.size) rs.chunks.push(e.data); };
+    rec.onstop=async()=>{
+      const blob=new Blob(rs.chunks,{type:rec.mimeType||"audio/webm"});
+      stream.getTracks().forEach(t=>t.stop());
+      rs.recorder=null; rs.stream=null;
+      clearInterval(rs.interval);
+      const btn=document.getElementById("recbtn-"+qid);
+      btn.classList.remove("recording");
+      btn.innerHTML="🎙";
+      document.getElementById("rectimer-"+qid).textContent="0:00";
+      if(blob.size>0) await saveRecordingBlob(q,blob);
+    };
+    rec.start();
+    rs.startTs=Date.now();
+    const btn=document.getElementById("recbtn-"+qid);
+    btn.classList.add("recording"); btn.innerHTML="⏹";
+    btn.setAttribute("aria-label","Stop recording");
+    showRecMsg(qid,"🔴 Recording… Click ⏹ to stop (max 2 minutes).","info");
+    rs.interval=setInterval(()=>{
+      const el=(Date.now()-rs.startTs)/1000;
+      document.getElementById("rectimer-"+qid).textContent=fmtTime(el);
+      if(el*1000>=MAX_RECORD_MS){ stopRecording(q); }
+    },250);
+  })
+  .catch(errr=>{
+    let msg="Microphone access was denied. Your speaking answer is important for your teacher to grade — please allow microphone access and try again, or use the 📁 upload button to attach an audio file.";
+    if(errr && errr.name==="NotFoundError") msg="No microphone was found. Please connect a microphone, or use the 📁 upload button to attach an audio file.";
+    showRecMsg(qid,msg,"err");
+  });
+}
+function stopRecording(q){
+  const rs=recStates[q.qid];
+  if(rs && rs.recorder && rs.recorder.state==="recording") rs.recorder.stop();
+}
+async function saveRecordingBlob(q,blob,name){
+  const qid=q.qid;
+  try{ await idbPut("rec_"+qid,blob); }
+  catch(e){ showRecMsg(qid,"⚠ Your recording could not be saved to browser storage. It will be available for this session only.","err"); }
+  state.recMeta[qid]={type:blob.type||"audio/webm",size:blob.size,ts:Date.now(),url:URL.createObjectURL(blob),name:name||("speaking_"+qid+".webm")};
+  saveState();
+  const m=document.getElementById("recmsg-"+qid); if(m) m.classList.remove("show");
+  renderRecPlayer(q); refreshQuestion(qid);
+}
+function renderRecPlayer(q){
+  const qid=q.qid;
+  const meta=state.recMeta[qid];
+  const playerHost=document.getElementById("recplayer-"+qid);
+  const statusEl=document.getElementById("recstatus-"+qid);
+  const delBtn=document.getElementById("recdel-"+qid);
+  if(!playerHost||!statusEl||!delBtn) return;
+  if(!meta){
+    playerHost.classList.remove("show"); playerHost.innerHTML="";
+    statusEl.textContent="Not recorded"; statusEl.classList.remove("saved");
+    delBtn.classList.add("hidden");
+    return;
+  }
+  if(!meta.url){
+    statusEl.textContent="Recording saved ✓"; statusEl.classList.add("saved");
+    delBtn.classList.remove("hidden");
+    idbGet("rec_"+qid).then(blob=>{ if(blob){ meta.url=URL.createObjectURL(blob); renderRecPlayer(q);} }).catch(()=>{});
+    return;
+  }
+  playerHost.innerHTML='<audio controls src="'+meta.url+'" aria-label="Playback of your recording for question '+q.num+'"></audio>';
+  playerHost.classList.add("show");
+  statusEl.textContent="Recording saved ✓"; statusEl.classList.add("saved");
+  delBtn.classList.remove("hidden");
+}
+
+/* ---------- Refresh question visuals ---------- */
+function refreshQuestion(qid){
+  const q=qIndex[qid]; if(!q)return;
+  const wrap=document.getElementById("q-"+qid);
+  if(!wrap)return;
+  const isTeacher = teacherSecIds.indexOf(q.secId)>-1;
+  wrap.classList.remove("state-correct","state-incorrect","state-teacher");
+  if(isTeacher){
+    const st=document.getElementById("st-"+qid);
+    const hasText=String(state.teacher[qid]||"").trim().length>0;
+    const hasRec=!!state.recMeta[qid];
+    let txt="";
+    if(hasText&&hasRec) txt="🧑‍🏫 Recording and text saved — awaiting teacher grading";
+    else if(hasRec) txt="🧑‍🏫 Recording saved — awaiting teacher grading";
+    else if(hasText) txt="🧑‍🏫 Written text saved — awaiting teacher grading";
+    if(st){ st.textContent=txt; st.className="feedback pending"+(txt?" show":""); }
+    if(hasText||hasRec) wrap.classList.add("state-teacher");
+  } else {
+    const res=getCorrect(q);
+    const inp = q.type==="text" ? document.getElementById("in-"+qid) : null;
+    const fb=document.getElementById("fb-"+qid);
+    wrap.querySelectorAll(".opt").forEach(o=>o.classList.remove("sel-ok","sel-bad"));
+    if(inp){ inp.classList.remove("ok","bad"); }
+    if(res===null){ if(fb){fb.className="feedback";fb.textContent="";} }
+    else if(res){
+      wrap.classList.add("state-correct");
+      if(inp) inp.classList.add("ok");
+      markSelectedOpt(wrap,true);
+      if(fb){ fb.className="feedback ok show"; fb.textContent="✓ Correct"; }
+    } else {
+      wrap.classList.add("state-incorrect");
+      if(inp) inp.classList.add("bad");
+      markSelectedOpt(wrap,false);
+      if(fb){ fb.className="feedback bad show"; fb.textContent="✗ Incorrect — try again or keep your answer"; }
+    }
+  }
+  refreshDots(); refreshChips(); updateScriptBtn();
+}
+function markSelectedOpt(wrap,ok){
+  const sel=wrap.querySelector(".opt input:checked");
+  if(sel){ sel.closest(".opt").classList.add(ok?"sel-ok":"sel-bad"); }
+}
+function refreshDots(){
+  allQuestions.forEach(q=>{
+    const d=dotMap[q.qid]; if(!d)return;
+    const isTeacher=teacherSecIds.indexOf(q.secId)>-1;
+    let cls="pdot ";
+    if(isTeacher){ cls += getAnswered(q)?"teacher ":"unanswered "; }
+    else{
+      const res=getCorrect(q);
+      if(res===null) cls+="unanswered ";
+      else cls+=(res?"correct ":"incorrect ");
+    }
+    if(currentQid===q.qid) cls+="current";
+    d.className=cls.trim();
+  });
+}
+function refreshChips(){
+  DATA.forEach(sec=>{
+    const qs=[]; sec.exercises.forEach(ex=>ex.questions.forEach(q=>qs.push(q)));
+    const done=qs.filter(q=>getAnswered(q)).length;
+    const el=document.getElementById("chipcnt-"+sec.id);
+    if(el) el.textContent="("+done+"/"+qs.length+")";
+  });
+}
+function setCurrentQ(qid){ if(currentQid===qid)return; currentQid=qid; refreshDots(); }
+
+/* ---------- Script button visibility ---------- */
+function updateScriptBtn(){
+  const btn=document.getElementById("viewScriptBtn"); if(!btn)return;
+  const lqs=allQuestions.filter(q=>q.secId==="listening");
+  const allDone=lqs.length>0 && lqs.every(q=>getAnswered(q));
+  btn.classList.toggle("hidden",!allDone);
+}
+function openScriptModal(){
+  let html="";
+  ["listening1","listening2"].forEach(k=>{
+    const s=SCRIPTS[k];
+    html+='<div class="script-block"><h4>🎧 '+s.title+'</h4>';
+    s.lines.forEach(l=>{ html+='<p><span class="sp">'+l[0]+':</span> '+esc(l[1])+'</p>'; });
+    html+='</div>';
+  });
+  openModal("Listening scripts",html,[{label:"Close",cls:"btn-primary"}]);
+}
+
+/* ---------- Navigation ---------- */
+function goToSection(i){
+  curSection=Math.max(0,Math.min(DATA.length-1,i));
+  state.sectionIdx=curSection; saveState();
+  document.querySelectorAll(".sec-card").forEach((el,idx)=>el.classList.toggle("hidden",idx!==curSection));
+  document.querySelectorAll("#secNav .chip").forEach((el,idx)=>el.classList.toggle("active",idx===curSection));
+  document.getElementById("prevBtn").disabled=(curSection===0);
+  document.getElementById("nextBtn").textContent=(curSection===DATA.length-1)?"Review & Submit ✓":"Next →";
+  const firstQ=DATA[curSection].exercises[0].questions[0];
+  setCurrentQ(firstQ.qid);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ---------- Reset ---------- */
+function openResetModal(sec){
+  openModal("Reset options","What would you like to reset?",[
+    {label:"Reset "+sec.name,cls:"btn-danger",onClick:()=>confirmReset("section",sec)},
+    {label:"Reset the whole test",cls:"btn-danger",onClick:()=>confirmReset("all",sec)},
+    {label:"Cancel",cls:"btn-ghost"}
+  ]);
+}
+function confirmReset(scope,sec){
+  const msg = scope==="all"
+    ? "Reset the whole test?<br><br>This will delete all answers and recordings in all sections. This cannot be undone.<br><br><i>Note: listening audio play counts are kept.</i>"
+    : "Reset all answers in "+sec.name+"?<br><br>This will also delete any recordings in this section. This cannot be undone."+((sec.id==="listening")?"<br><br><i>Note: your listening play count will not be reset.</i>":"");
+  openModal(scope==="all"?"Reset the whole test?":"Reset "+sec.name+"?",msg,[
+    {label:"Cancel",cls:"btn-ghost"},
+    {label:scope==="all"?"Reset everything":"Reset "+sec.name,cls:"btn-danger",onClick:()=>doReset(scope,sec)}
+  ]);
+}
+async function doReset(scope,sec){
+  const secs = scope==="all"? DATA : [sec];
+  for(const s of secs){
+    for(const ex of s.exercises){
+      for(const q of ex.questions){
+        delete state.answers[q.qid];
+        delete state.teacher[q.qid];
+        if(state.recMeta[q.qid]){ delete state.recMeta[q.qid]; await idbDel("rec_"+q.qid); renderRecPlayer(q); }
+        const inp=document.getElementById("in-"+q.qid); if(inp){ inp.value=""; inp.classList.remove("ok","bad"); }
+        const ta=document.getElementById("ta-"+q.qid); if(ta) ta.value="";
+        const cc=document.getElementById("cc-"+q.qid); if(cc) cc.textContent="0 words";
+        document.querySelectorAll('#q-'+q.qid+' input[type=radio]').forEach(r=>{r.checked=false;});
+        refreshQuestion(q.qid);
+      }
+    }
+  }
+  if(scope==="all"){
+    state.elapsed=0; state.submitted=false; state.submittedAt=null;
+    stopTimer(); startTimer();
+    document.getElementById("resultsHost").classList.add("hidden");
+    document.getElementById("resultsHost").innerHTML="";
+    document.getElementById("sectionsHost").classList.remove("hidden");
+    document.getElementById("secNav").classList.remove("hidden");
+    document.getElementById("navRow").classList.remove("hidden");
+    document.getElementById("submitRow").classList.remove("hidden");
+    goToSection(0);
+  }
+  saveState(); refreshDots(); refreshChips(); updateScriptBtn();
+}
+
+/* ---------- Submit ---------- */
+function collectUnanswered(){
+  const out=[];
+  DATA.forEach(sec=>{
+    const missing=[];
+    sec.exercises.forEach(ex=>ex.questions.forEach(q=>{ if(!getAnswered(q)) missing.push(ex.title+" Q"+q.num); }));
+    if(missing.length) out.push({name:sec.name, missing});
+  });
+  return out;
+}
+document.getElementById("submitBtn").addEventListener("click",()=>{
+  const un=collectUnanswered();
+  if(un.length){
+    let html='<p>You still have unanswered questions:</p>';
+    un.forEach(u=>{ html+='<div class="warn-item"><b>'+u.name+':</b> '+u.missing.join(", ")+'</div>'; });
+    html+='<p style="margin-top:10px">You can go back and answer them, or submit the test anyway.</p>';
+    openModal("Some questions are unanswered",html,[
+      {label:"Go back",cls:"btn-primary"},
+      {label:"Submit anyway",cls:"btn-green",onClick:doSubmit}
+    ]);
+  } else {
+    openModal("Submit test?","Are you sure you want to submit your test? After submitting you will see your automatic results. Speaking and Writing will be graded by your teacher.",[
+      {label:"Cancel",cls:"btn-ghost"},
+      {label:"Submit Test ✓",cls:"btn-green",onClick:doSubmit}
+    ]);
+  }
+});
+function doSubmit(){
+  state.submitted=true;
+  state.submittedAt=Date.now();
+  stopTimer(); saveState();
+  showResults();
+}
+
+/* ---------- Timer ---------- */
+function startTimer(){
+  document.getElementById("timerTxt").textContent=fmtTime(state.elapsed);
+  if(state.submitted) return;
+  lastTick=Date.now();
+  timerHandle=setInterval(()=>{
+    const now=Date.now();
+    if(document.hidden){ lastTick=now; return; } // pause when tab is hidden
+    state.elapsed += (now-lastTick)/1000;
+    lastTick=now;
+    document.getElementById("timerTxt").textContent=fmtTime(state.elapsed);
+    if(now-lastSaveAt>5000) saveState();
+  },1000);
+}
+function stopTimer(){ if(timerHandle){clearInterval(timerHandle);timerHandle=null;} }
+document.addEventListener("visibilitychange",()=>{ if(document.hidden) saveState(); else lastTick=Date.now(); });
+window.addEventListener("beforeunload",()=>saveState());
+
+/* =========================================================
+   RESULTS / REVIEW / SHARE
+   ========================================================= */
+function computeResults(){
+  let correct=0, incorrect=0, unanswered=0;
+  const perSec={};
+  DATA.forEach(sec=>{
+    if(sec.teacher){ perSec[sec.id]={teacher:true,total:0,saved:0}; }
+    else perSec[sec.id]={teacher:false,total:0,correct:0,incorrect:0,unanswered:0};
+  });
+  autoQuestions.forEach(q=>{
+    const st=perSec[q.secId]; st.total++;
+    const res=getCorrect(q);
+    if(res===null){unanswered++;st.unanswered++;}
+    else if(res){correct++;st.correct++;}
+    else {incorrect++;st.incorrect++;}
+  });
+  DATA.forEach(sec=>{
+    if(sec.teacher){
+      sec.exercises.forEach(ex=>ex.questions.forEach(q=>{
+        perSec[sec.id].total++;
+        if(getAnswered(q)) perSec[sec.id].saved++;
+      }));
+    }
+  });
+  const pct = autoQuestions.length? Math.round(correct/autoQuestions.length*100):0;
+  let grade;
+  if(pct>=90)grade="Excellent"; else if(pct>=75)grade="Good"; else if(pct>=60)grade="Satisfactory"; else grade="Needs improvement";
+  const recCount=Object.keys(state.recMeta).length;
+  return {correct,incorrect,unanswered,total:autoQuestions.length,pct,grade,perSec,recCount};
+}
+function studentAnswerText(q){
+  const v=state.answers[q.qid];
+  if(v===undefined||v===null||v==="")return "(no answer)";
+  if(q.type==="tf") return v==="true"?"True":"False";
+  if(q.type==="stress") return "Syllable "+(Number(v)+1);
+  if(q.type==="mc") return q.options[Number(v)];
+  return String(v);
+}
+function correctAnswerText(q){
+  if(q.type==="tf") return q.ans?"True":"False";
+  if(q.type==="stress") return "Syllable "+(q.ans+1);
+  if(q.type==="mc") return q.options[q.ans];
+  return q.ansList[0];
+}
+function buildSummaryText(){
+  const r=computeResults();
+  const wrong=autoQuestions.filter(q=>getCorrect(q)===false)
+    .map(q=>"• "+q.secName+" "+q.exTitle+" Q"+q.num+" – your answer: "+studentAnswerText(q)).join("\n");
+  let t="EFB File Test 9A Result\n";
+  t+="Date: "+fmtDate(state.submittedAt||Date.now())+"\n";
+  t+="Automatic score: "+r.correct+"/"+r.total+"\n";
+  t+="Percentage: "+r.pct+"%\n";
+  t+="Provisional grade: "+r.grade+"\n";
+  t+="Speaking: "+(r.recCount?r.recCount+" recording(s) saved, ":"")+"awaiting teacher grading\n";
+  t+="Writing: "+(String(state.teacher["w1"]||"").trim()?"text saved, ":"not answered, ")+"awaiting teacher grading\n";
+  t+="Correct: "+r.correct+" · Incorrect: "+r.incorrect+" · Unanswered: "+r.unanswered+"\n";
+  if(wrong) t+="\nMistakes:\n"+wrong+"\n";
+  t+="\nTime taken: "+fmtTimeLong(state.elapsed)+"\n";
+  t+="Completed: "+fmtDate(state.submittedAt||Date.now())+"\n";
+  return t;
+}
+function showResults(){
+  const r=computeResults();
+  document.getElementById("sectionsHost").classList.add("hidden");
+  document.getElementById("secNav").classList.add("hidden");
+  document.getElementById("navRow").classList.add("hidden");
+  document.getElementById("submitRow").classList.add("hidden");
+  document.getElementById("timerTxt").textContent=fmtTime(state.elapsed);
+  const host=document.getElementById("resultsHost");
+  host.classList.remove("hidden");
+
+  let secRows="";
+  DATA.forEach(sec=>{
+    const st=r.perSec[sec.id];
+    if(st.teacher){
+      secRows+='<div class="sec-status"><span><b>'+sec.name+'</b></span><span class="pill p">🧑‍🏫 Awaiting teacher grading'+(st.saved?" · "+st.saved+"/"+st.total+" saved":" · not answered")+'</span></div>';
+    } else {
+      secRows+='<div class="sec-status"><span><b>'+sec.name+'</b></span><span><span class="pill g">✓ '+st.correct+'</span> <span class="pill r">✗ '+st.incorrect+'</span>'+(st.unanswered?' <span class="pill a">– '+st.unanswered+' blank</span>':'')+'</span></div>';
+    }
+  });
+
+  host.innerHTML=
+  '<div class="card res-hero">'+
+    '<div style="font-size:.85rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Test submitted 🎉</div>'+
+    '<div class="res-score">'+r.correct+' / '+r.total+'</div>'+
+    '<div style="color:var(--muted);font-weight:600">Automatic score · '+r.pct+'%</div>'+
+    '<div class="res-grade">Provisional grade: '+r.grade+'</div>'+
+    '<div style="font-size:.8rem;color:var(--muted);max-width:460px;margin:6px auto 0">This grade is <b>provisional</b> — it is based only on automatically graded sections. Speaking and Writing will be graded by your teacher.</div>'+
+    '<div class="res-grid">'+
+      '<div class="res-cell"><div class="k">✓ Correct</div><div class="v" style="color:var(--green)">'+r.correct+'</div></div>'+
+      '<div class="res-cell"><div class="k">✗ Incorrect</div><div class="v" style="color:var(--red)">'+r.incorrect+'</div></div>'+
+      '<div class="res-cell"><div class="k">– Unanswered</div><div class="v" style="color:var(--amber)">'+r.unanswered+'</div></div>'+
+      '<div class="res-cell"><div class="k">🎙 Recordings saved</div><div class="v" style="color:var(--purple)">'+r.recCount+'</div></div>'+
+      '<div class="res-cell"><div class="k">Completed</div><div class="v" style="font-size:.85rem">'+fmtDate(state.submittedAt||Date.now())+'</div></div>'+
+      '<div class="res-cell"><div class="k">Time taken</div><div class="v" style="font-size:.85rem">'+fmtTimeLong(state.elapsed)+'</div></div>'+
+    '</div>'+
+  '</div>'+
+  '<div class="card"><h3 style="margin-top:0">Section status</h3>'+secRows+'</div>'+
+  '<div class="card" style="text-align:center">'+
+    '<button class="btn btn-primary" id="reviewBtn">🔍 Review Results</button> '+
+    '<button class="btn btn-purple" id="shareBtn">📤 Share Results</button> '+
+    '<button class="btn btn-ghost" id="copyBtn">📋 Copy Results</button> '+
+    '<button class="btn btn-ghost" id="exportBtn">⬇ Download Results Package</button>'+
+    '<div class="share-row">'+
+      '<button class="btn btn-ghost btn-sm" id="waBtn">WhatsApp</button>'+
+      '<button class="btn btn-ghost btn-sm" id="tgBtn">Telegram</button>'+
+      '<button class="btn btn-ghost btn-sm" id="mailBtn">Email</button>'+
+    '</div>'+
+  '</div>'+
+  '<div id="reviewHost"></div>';
+
+  document.getElementById("reviewBtn").onclick=renderReview;
+  document.getElementById("copyBtn").onclick=copyResults;
+  document.getElementById("shareBtn").onclick=shareResults;
+  document.getElementById("exportBtn").onclick=exportPackage;
+  document.getElementById("waBtn").onclick=()=>window.open("https://wa.me/?text="+encodeURIComponent(buildSummaryText()),"_blank");
+  document.getElementById("tgBtn").onclick=()=>window.open("https://t.me/share/url?url="+encodeURIComponent(location.href)+"&text="+encodeURIComponent(buildSummaryText()),"_blank");
+  document.getElementById("mailBtn").onclick=()=>{window.location.href="mailto:?subject="+encodeURIComponent("EFB File Test 9A Result")+"&body="+encodeURIComponent(buildSummaryText());};
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderReview(){
+  const host=document.getElementById("reviewHost");
+  host.innerHTML="";
+  const card=document.createElement("div"); card.className="card";
+  card.innerHTML="<h3 style='margin-top:0'>🔍 Review Results</h3><p style='color:var(--muted);font-size:.88rem'>Your mistakes are shown with the correct answers and short explanations. Teacher-graded answers are shown as saved.</p>";
+
+  const wrongList=autoQuestions.filter(q=>getCorrect(q)===false);
+  const h=document.createElement("div");
+  if(wrongList.length){
+    h.innerHTML='<div class="rv-sec-title">✗ Incorrect answers ('+wrongList.length+')</div>';
+    wrongList.forEach(q=>{
+      const d=document.createElement("div"); d.className="review-item wrong";
+      d.innerHTML='<div style="font-size:.78rem;font-weight:700;color:var(--muted)">'+q.secName+" · "+q.exTitle+" · Q"+q.num+'</div>'+
+        '<div style="margin:6px 0">'+q.prompt+'</div>'+
+        '<div class="ans-line"><span class="ans-wrong">Your answer: '+esc(studentAnswerText(q))+' ✗</span></div>'+
+        '<div class="ans-line"><span class="ans-correct">Correct answer: '+esc(correctAnswerText(q))+' ✓</span></div>'+
+        '<div class="expl">💡 '+q.exp+'</div>';
+      h.appendChild(d);
+    });
+  } else {
+    h.innerHTML='<div class="rv-sec-title">✗ Incorrect answers</div><div class="review-item" style="border-color:#86efac;background:#f6fef9">🎉 No mistakes in the automatically graded sections!</div>';
+  }
+  const unans=autoQuestions.filter(q=>getCorrect(q)===null);
+  if(unans.length){
+    h.innerHTML+='<div class="rv-sec-title">– Unanswered questions ('+unans.length+')</div>';
+    unans.forEach(q=>{
+      const d=document.createElement("div"); d.className="review-item wrong";
+      d.innerHTML='<div style="font-size:.78rem;font-weight:700;color:var(--muted)">'+q.secName+" · "+q.exTitle+" · Q"+q.num+'</div>'+
+        '<div style="margin:6px 0">'+q.prompt+'</div>'+
+        '<div class="ans-line"><span class="ans-wrong">Your answer: (no answer) ✗</span></div>'+
+        '<div class="ans-line"><span class="ans-correct">Correct answer: '+esc(correctAnswerText(q))+' ✓</span></div>'+
+        '<div class="expl">💡 '+q.exp+'</div>';
+      h.appendChild(d);
+    });
+  }
+  h.innerHTML+='<div class="rv-sec-title">🎧 Listening</div><div class="review-item"><button class="btn btn-purple btn-sm" id="rvScriptBtn">📜 View listening scripts</button></div>';
+
+  h.innerHTML+='<div class="rv-sec-title">🧑‍🏫 Teacher-graded sections</div>';
+  DATA.filter(s=>s.teacher).forEach(sec=>{
+    sec.exercises.forEach(ex=>ex.questions.forEach(q=>{
+      const d=document.createElement("div"); d.className="review-item teacher";
+      let inner='<div style="font-size:.78rem;font-weight:700;color:var(--muted)">'+sec.name+" · "+ex.title+(ex.questions.length>1?" · Q"+q.num:"")+'</div><div style="margin:6px 0">'+q.prompt+'</div>';
+      const txt=String(state.teacher[q.qid]||"").trim();
+      inner+= txt? '<div class="ans-line"><b>Your written answer:</b><div style="background:#f8fafc;border-radius:8px;padding:8px 10px;margin-top:4px;white-space:pre-wrap">'+esc(txt)+'</div></div>' : '<div class="ans-line" style="color:var(--muted)">No written answer.</div>';
+      if(q.type==="speak"){
+        if(state.recMeta[q.qid]) inner+='<div class="ans-line"><b>Your recording:</b><div id="rv-rec-'+q.qid+'" style="margin-top:4px"></div></div>';
+        else inner+='<div class="ans-line" style="color:var(--muted)">No recording saved.</div>';
+      }
+      inner+='<div class="expl" style="background:var(--purple-bg);border-color:var(--purple);color:#4c1d95">🧑‍🏫 This section will be graded by a teacher.</div>';
+      d.innerHTML=inner;
+      h.appendChild(d);
+      if(q.type==="speak" && state.recMeta[q.qid]){
+        (async()=>{
+          const mount=document.getElementById("rv-rec-"+q.qid);
+          if(!mount)return;
+          let url=state.recMeta[q.qid].url;
+          if(!url){ const blob=await idbGet("rec_"+q.qid).catch(()=>null); if(blob) url=URL.createObjectURL(blob); }
+          mount.innerHTML=url?'<audio controls src="'+url+'"></audio>':'<span style="color:var(--muted)">Recording unavailable.</span>';
+        })();
+      }
+    }));
+  });
+  card.appendChild(h);
+  host.appendChild(card);
+  const rs=document.getElementById("rvScriptBtn"); if(rs) rs.onclick=openScriptModal;
+  host.scrollIntoView({behavior:"smooth"});
+}
+
+async function copyResults(){
+  const txt=buildSummaryText()+"\n(Full written answers and speaking recordings are included in the downloaded results package.)";
+  try{ await navigator.clipboard.writeText(txt); toast("📋 Results copied to clipboard!"); }
+  catch(e){
+    openModal("Copy results",'<textarea readonly style="min-height:220px">'+esc(txt)+'</textarea>',[{label:"Close",cls:"btn-primary"}]);
+  }
+}
+function toast(msg){
+  openModal("Done",'<p style="margin:0">'+msg+'</p>',[{label:"OK",cls:"btn-primary"}]);
+}
+async function shareResults(){
+  const files=[];
+  const txt=buildSummaryText();
+  files.push(new File([txt],"efb_test9a_results.txt",{type:"text/plain"}));
+  for(const qid in state.recMeta){
+    try{
+      let blob=await idbGet("rec_"+qid);
+      if(!blob && state.recMeta[qid].url){
+        blob=await fetch(state.recMeta[qid].url).then(r=>r.blob()).catch(()=>null);
+      }
+      if(blob){
+        const ext=(blob.type&&blob.type.indexOf("mp4")>-1)?".m4a":((blob.type&&blob.type.indexOf("ogg")>-1)?".ogg":".webm");
+        files.push(new File([blob],"speaking_"+qid+ext,{type:blob.type||"audio/webm"}));
+      }
+    }catch(e){}
+  }
+  if(navigator.share){
+    try{
+      if(navigator.canShare && navigator.canShare({files})){
+        await navigator.share({title:"EFB File Test 9A Result",text:txt,files});
+        return;
+      }
+      await navigator.share({title:"EFB File Test 9A Result",text:txt});
+      return;
+    }catch(e){ if(e && e.name==="AbortError") return; }
+  }
+  exportPackage();
+}
+async function exportPackage(){
+  let full=buildSummaryText()+"\n\n===== WRITTEN ANSWERS (teacher-graded) =====\n";
+  DATA.filter(s=>s.teacher).forEach(sec=>sec.exercises.forEach(ex=>ex.questions.forEach(q=>{
+    full+="\n["+sec.name+" "+ex.title+" Q"+q.num+"]\n"+(String(state.teacher[q.qid]||"").trim()||"(no written answer)")+"\n";
+  })));
+  full+="\n\nNote: your speaking recordings are downloaded as separate audio files. Please attach them when sending your results to your teacher.\n";
+  downloadBlob(new Blob([full],{type:"text/plain"}),"efb_test9a_results.txt");
+  for(const qid in state.recMeta){
+    try{
+      let blob=await idbGet("rec_"+qid);
+      if(!blob && state.recMeta[qid].url){
+        blob=await fetch(state.recMeta[qid].url).then(r=>r.blob()).catch(()=>null);
+      }
+      if(blob){
+        const ext=(blob.type&&blob.type.indexOf("mp4")>-1)?".m4a":((blob.type&&blob.type.indexOf("ogg")>-1)?".ogg":".webm");
+        downloadBlob(blob,"speaking_"+qid+ext);
+      }
+    }catch(e){}
+  }
+  toast("⬇ Results package downloaded. You may need to attach the files manually when sending them to your teacher.");
+}
+function downloadBlob(blob,name){
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download=name;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+function init(){
+  loadState();
+  buildProgress();
+  buildNav();
+  buildSections();
+  allQuestions.forEach(q=>refreshQuestion(q.qid));
+  refreshDots(); refreshChips(); updateScriptBtn();
+  document.getElementById("prevBtn").addEventListener("click",()=>goToSection(curSection-1));
+  document.getElementById("nextBtn").addEventListener("click",()=>{
+    if(curSection===DATA.length-1) document.getElementById("submitBtn").click();
+    else goToSection(curSection+1);
+  });
+  if("IntersectionObserver" in window){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting && e.target.dataset.qid) setCurrentQ(e.target.dataset.qid); });
+    },{rootMargin:"-15% 0px -70% 0px"});
+    document.querySelectorAll(".question").forEach(el=>io.observe(el));
+  }
+  if(state.submitted){ showResults(); }
+  else{ goToSection(state.sectionIdx||0); startTimer(); }
+}
+init();
+</script>
+</body>
+</html>
